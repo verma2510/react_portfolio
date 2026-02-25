@@ -26,7 +26,7 @@ app.post('/api/contact', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER, // Send email to yourself
+    to: process.env.RECEIVER_EMAIL || process.env.EMAIL_USER, 
     subject: `New Portfolio Contact from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     replyTo: email,
