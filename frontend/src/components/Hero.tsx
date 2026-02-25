@@ -50,49 +50,49 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-950">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       <style>{fontStyles}</style>
 
       {/* Floating Geometric Shapes & Gradient Mesh Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
         <motion.div
-          animate={{ 
+          animate={{
             rotate: [0, 90, 180, 270, 360],
             scale: [1, 1.2, 1, 0.8, 1],
             x: [0, 100, 0, -100, 0],
             y: [0, -50, 0, 50, 0]
           }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-cyan-900/20 blur-[120px]"
+          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-cyan-300/40 dark:bg-cyan-900/20 blur-[120px]"
         />
         <motion.div
-          animate={{ 
+          animate={{
             rotate: [360, 270, 180, 90, 0],
             scale: [1, 0.8, 1, 1.2, 1],
             x: [0, -100, 0, 100, 0],
             y: [0, 50, 0, -50, 0]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[40%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-indigo-900/20 blur-[100px]"
+          className="absolute top-[40%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-indigo-300/40 dark:bg-indigo-900/20 blur-[100px]"
         />
-        
+
         {/* Subtle geometric particles floating */}
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: Math.random() * innerHeight }}
-            animate={{ 
+            animate={{
               y: [null, Math.random() * -500],
               opacity: [0, 0.3, 0],
               rotate: [0, 180]
             }}
-            transition={{ 
-              duration: 10 + Math.random() * 10, 
-              repeat: Infinity, 
+            transition={{
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
               delay: Math.random() * 5,
               ease: "linear"
             }}
-            className="absolute z-0 border border-cyan-500/20 rounded"
+            className="absolute z-0 border border-cyan-400/40 dark:border-cyan-500/20 rounded"
             style={{
               left: `${Math.random() * 100}%`,
               width: `${20 + Math.random() * 40}px`,
@@ -103,19 +103,19 @@ export function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center justify-center text-center">
-        
-        <motion.div 
+
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="flex flex-col items-center justify-center"
         >
           {/* Label: The Story of */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="mb-8"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-slate-900/50 border border-slate-800 text-slate-400 text-sm tracking-[0.2em] uppercase backdrop-blur-md">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-slate-200/50 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm tracking-[0.2em] uppercase backdrop-blur-md">
               The Story of
             </span>
           </motion.div>
@@ -125,42 +125,42 @@ export function Hero() {
             style={{ x: parallaxX, y: parallaxY }}
             className="relative mb-6"
           >
-            <motion.h1 
+            <motion.h1
               variants={itemVariants}
-              className="text-6xl sm:text-7xl md:text-9xl font-playfair font-semibold text-white tracking-tight"
+              className="text-6xl sm:text-7xl md:text-9xl font-playfair font-semibold text-slate-900 dark:text-white tracking-tight"
             >
               {portfolioData.hero.name}
-              <span className="text-cyan-400">.</span>
+              <span className="text-cyan-600 dark:text-cyan-400">.</span>
             </motion.h1>
             {/* Elegant horizontal accent line */}
-            <motion.div 
+            <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 1.2, delay: 1, ease: "circOut" }}
-              className="absolute -bottom-2 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent origin-center"
+              className="absolute -bottom-2 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/60 dark:via-cyan-400/80 to-transparent origin-center"
             />
           </motion.div>
 
           {/* Tagline / Context with JetBrains Mono */}
           <motion.div variants={itemVariants} className="mt-8 mb-16 max-w-2xl">
-            <p className="font-jetbrains text-lg md:text-2xl text-slate-400 leading-relaxed">
+            <p className="font-jetbrains text-lg md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
               &ldquo;{portfolioData.hero.tagline}&rdquo;
             </p>
           </motion.div>
 
           {/* CTA Button */}
           <motion.div variants={itemVariants}>
-            <a 
-              href="#about" 
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-500/30 text-indigo-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
+            <a
+              href="#about"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-400/50 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
             >
               {/* Fill effect on hover */}
               <div className="absolute inset-0 bg-indigo-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
-              
+
               <span className="relative z-10 font-jetbrains text-sm tracking-widest uppercase font-medium">
                 Begin the Journey
               </span>
-              <motion.span 
+              <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="relative z-10"
@@ -174,7 +174,7 @@ export function Hero() {
       </div>
 
       {/* Decorative cinematic gradient at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none transition-colors duration-500" />
     </section>
   );
 }
