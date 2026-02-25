@@ -33,10 +33,10 @@ export function Hobbies() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-24 md:mb-32"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-orange-500 dark:text-orange-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-orange-500 dark:text-orange-400 uppercase mb-4 block">
             07 / Hobbies
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             Beyond the Code.
           </h2>
         </motion.div>
@@ -67,11 +67,11 @@ export function Hobbies() {
                 {hobby.emoji}
               </div>
               
-              <h4 className="font-playfair text-2xl font-bold text-slate-800 dark:text-white mb-3">
+              <h4 className="text-2xl font-bold text-slate-800 dark:text-white mb-3">
                 {hobby.name}
               </h4>
               
-              <p className="font-jetbrains text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 {hobby.description}
               </p>
             </motion.div>

@@ -82,7 +82,7 @@ function CircularProgress({ percentage, label, index }: { percentage: number, la
         </svg>
         {/* Percentage Text */}
         <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-          <span className="text-base md:text-lg font-jetbrains font-bold text-slate-900 dark:text-white transition-colors">
+          <span className="text-base md:text-lg font-bold text-slate-900 dark:text-white transition-colors">
             {percentage}%
           </span>
         </div>
@@ -120,10 +120,10 @@ export function Skills() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-24"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
             02 / Skills
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             The Arsenal.
           </h2>
         </motion.div>
@@ -151,7 +151,7 @@ export function Skills() {
               transition={{ duration: 0.8, delay: catIndex * 0.1, ease: "easeOut" }}
               className="glass-panel p-8 md:p-10 rounded-3xl group border border-slate-200 dark:border-slate-800/60 hover:border-indigo-500/30 dark:hover:border-cyan-500/30 transition-colors duration-500"
             >
-              <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+              <h3 className="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
                 {category}
               </h3>
               

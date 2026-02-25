@@ -26,10 +26,10 @@ export function Experience() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-24 md:mb-32"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             03 / Experience
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             Battles Fought.
           </h2>
         </motion.div>
@@ -68,19 +68,19 @@ export function Experience() {
                     <div className={`glass-panel p-8 md:p-10 rounded-2xl md:rounded-3xl border-l-[3px] md:border-l-0 border-transparent transition-all duration-500 group-hover:shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-cyan-400/10 dark:hover:bg-slate-900/80 bg-slate-50 relative overflow-hidden text-left hover:-translate-y-1 ${isLeft ? 'md:border-r-[3px] hover:border-l-indigo-500 md:hover:border-l-transparent md:hover:border-r-indigo-500 dark:hover:border-l-cyan-400 dark:md:hover:border-l-transparent dark:md:hover:border-r-cyan-400' : 'md:border-l-[3px] hover:border-l-indigo-500 dark:hover:border-l-cyan-400'}`}>
                       
                       {/* Chapter Label */}
-                      <span className="font-jetbrains text-xs tracking-[0.2em] font-medium text-slate-400 dark:text-slate-500 uppercase block mb-6">
+                      <span className="text-xs tracking-[0.2em] font-medium text-slate-400 dark:text-slate-500 uppercase block mb-6">
                         Chapter 0{index + 1}
                       </span>
                       
                       <div className="flex flex-col gap-1 mb-6">
-                        <h4 className="font-playfair text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white leading-tight">
+                        <h4 className="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white leading-tight">
                           {exp.role}
                         </h4>
                         <div className="flex flex-wrap items-center gap-3">
                           <span className="text-lg md:text-xl text-indigo-600 dark:text-cyan-400 font-medium">
                             @ {exp.company}
                           </span>
-                          <span className="text-sm font-jetbrains text-slate-500 dark:text-slate-400 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-800/50">
+                          <span className="text-sm text-slate-500 dark:text-slate-400 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-800/50">
                             {exp.duration}
                           </span>
                         </div>
@@ -103,7 +103,7 @@ export function Experience() {
                           {exp.stack.map((tech, i) => (
                             <span 
                               key={i} 
-                              className="font-jetbrains text-xs tracking-wide px-3 py-1.5 rounded-md bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 group-hover:border-indigo-200 dark:group-hover:border-cyan-900 transition-colors"
+                              className="text-xs tracking-wide px-3 py-1.5 rounded-md bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 group-hover:border-indigo-200 dark:group-hover:border-cyan-900 transition-colors"
                             >
                               {tech}
                             </span>

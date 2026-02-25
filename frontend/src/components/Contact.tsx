@@ -52,10 +52,10 @@ export function Contact() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16 md:mb-24"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             08 / Contact
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             Let's Build Together.
           </h2>
         </motion.div>
@@ -83,7 +83,7 @@ export function Contact() {
                   <Mail size={24} />
                 </div>
                 <h5 className="font-bold text-slate-900 dark:text-white mb-1">Email</h5>
-                <p className="text-sm font-jetbrains text-slate-500 truncate">{portfolioData.contact.email}</p>
+                <p className="text-sm text-slate-500 truncate">{portfolioData.contact.email}</p>
               </a>
 
               <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" className="group p-6 glass-panel rounded-2xl hover:bg-white dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-500/10">
@@ -91,7 +91,7 @@ export function Contact() {
                   <Github size={24} />
                 </div>
                 <h5 className="font-bold text-slate-900 dark:text-white mb-1">GitHub</h5>
-                <p className="text-sm font-jetbrains text-slate-500 truncate">Source Code</p>
+                <p className="text-sm text-slate-500 truncate">Source Code</p>
               </a>
 
               <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="group p-6 glass-panel rounded-2xl hover:bg-white dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10">
@@ -99,7 +99,7 @@ export function Contact() {
                   <Linkedin size={24} />
                 </div>
                 <h5 className="font-bold text-slate-900 dark:text-white mb-1">LinkedIn</h5>
-                <p className="text-sm font-jetbrains text-slate-500 truncate">Professional Network</p>
+                <p className="text-sm text-slate-500 truncate">Professional Network</p>
               </a>
 
               {portfolioData.contact.twitter && (
@@ -108,7 +108,7 @@ export function Contact() {
                     <Twitter size={24} />
                   </div>
                   <h5 className="font-bold text-slate-900 dark:text-white mb-1">Twitter</h5>
-                  <p className="text-sm font-jetbrains text-slate-500 truncate">Thoughts & Updates</p>
+                  <p className="text-sm text-slate-500 truncate">Thoughts & Updates</p>
                 </a>
               )}
             </div>
@@ -201,7 +201,7 @@ export function Contact() {
                   <button
                     type="submit"
                     disabled={status === 'loading' || status === 'success'}
-                    className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-indigo-600 dark:bg-cyan-500 hover:bg-indigo-700 dark:hover:bg-cyan-400 text-white font-jetbrains tracking-wider font-semibold uppercase text-sm rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden relative group"
+                    className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-indigo-600 dark:bg-cyan-500 hover:bg-indigo-700 dark:hover:bg-cyan-400 text-white tracking-wider font-semibold uppercase text-sm rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden relative group"
                   >
                     {/* Button hover effect */}
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out pointer-events-none" />
@@ -232,8 +232,8 @@ export function Contact() {
                     >
                       <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                     </motion.div>
-                    <h4 className="font-playfair text-3xl font-bold text-slate-900 dark:text-white mb-2">Message Sent</h4>
-                    <p className="text-slate-600 dark:text-slate-400 font-jetbrains">I'll be in touch shortly.</p>
+                    <h4 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Message Sent</h4>
+                    <p className="text-slate-600 dark:text-slate-400 ">I'll be in touch shortly.</p>
                   </motion.div>
                 )}
 
@@ -258,10 +258,10 @@ export function Contact() {
 
       {/* Footer Tagline injected directly below Contact grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-200 dark:border-slate-800/60 pt-8 flex flex-col md:flex-row justify-between items-center relative z-10 w-full">
-        <p className="text-slate-500 dark:text-slate-500 text-sm font-jetbrains mb-4 md:mb-0">
+        <p className="text-slate-500 dark:text-slate-500 text-sm mb-4 md:mb-0">
           © {new Date().getFullYear()} {portfolioData.hero.name} All rights reserved.
         </p>
-        <p className="text-slate-400 dark:text-slate-600 font-playfair italic flex items-center gap-2">
+        <p className="text-slate-400 dark:text-slate-600 italic flex items-center gap-2">
           Crafted with intent.
           <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-cyan-500 block animate-pulse" />
         </p>

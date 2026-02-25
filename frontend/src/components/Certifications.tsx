@@ -25,10 +25,10 @@ export function Certifications() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 md:mb-24 text-center md:text-right"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             06 / Certifications
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             Badges of Honor.
           </h2>
         </motion.div>
@@ -60,14 +60,14 @@ export function Certifications() {
                   {/* Verified Header */}
                   <div className="flex justify-between items-start mb-4">
                     <BadgeCheck className="text-indigo-500 dark:text-cyan-400" size={28} />
-                    <span className="text-[10px] font-jetbrains uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                    <span className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
                       Verified
                     </span>
                   </div>
 
                   {/* Cert Info */}
                   <div className="mb-auto">
-                    <h4 className="font-playfair text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
                       {cert.name}
                     </h4>
                     <span className="text-sm font-medium text-slate-600 dark:text-slate-400 block mb-1">
@@ -77,7 +77,7 @@ export function Certifications() {
 
                   {/* Footer Row */}
                   <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-                    <span className="text-xs font-jetbrains text-slate-500 opacity-80">
+                    <span className="text-xs text-slate-500 opacity-80">
                       {cert.date}
                     </span>
                     

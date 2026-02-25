@@ -26,10 +26,10 @@ export function About() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 md:mb-24"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
             01 / About
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             The Origin Story.
           </h2>
         </motion.div>
@@ -110,7 +110,7 @@ export function About() {
                       <div className="w-2 h-2 rounded-full bg-indigo-500 dark:bg-cyan-400" />
                     </div>
                     {/* Text */}
-                    <span className="font-jetbrains text-sm md:text-[13px] font-bold tracking-tight text-slate-900 dark:text-white mb-1.5 -mt-2">
+                    <span className="text-sm md:text-[13px] font-bold tracking-tight text-slate-900 dark:text-white mb-1.5 -mt-2">
                       {m.year}
                     </span>
                     <span className="text-sm md:text-sm text-slate-600 dark:text-slate-400 leading-snug">

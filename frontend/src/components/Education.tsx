@@ -25,10 +25,10 @@ export function Education() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 md:mb-24"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             05 / Education
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
             The Foundation.
           </h2>
         </motion.div>
@@ -55,7 +55,7 @@ export function Education() {
 
               {/* Main Info */}
               <div className="relative z-10 mb-auto transition-transform duration-500 group-hover:-translate-y-2">
-                <h4 className="font-playfair text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2 pr-12 line-clamp-2">
+                <h4 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2 pr-12 line-clamp-2">
                   {edu.degree}
                 </h4>
                 
@@ -64,7 +64,7 @@ export function Education() {
                     <Building2 size={16} className="mr-3 text-indigo-500 dark:text-cyan-400" />
                     {edu.institution}
                   </div>
-                  <div className="flex items-center text-slate-500 dark:text-slate-500 text-sm font-jetbrains">
+                  <div className="flex items-center text-slate-500 dark:text-slate-500 text-sm ">
                     <Calendar size={14} className="mr-3" />
                     {edu.duration}
                   </div>

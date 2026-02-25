@@ -2,14 +2,6 @@ import { motion, useSpring, type Variants } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { useState, useEffect } from 'react';
 
-// You can load these fonts in your index.html/CSS, but for the safest reliable 
-// cinematic fonts directly via Google Fonts inline for this component.
-const fontStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
-  
-  .font-playfair { font-family: 'Playfair Display', serif; }
-  .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
-`;
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -51,7 +43,7 @@ export function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
-      <style>{fontStyles}</style>
+
 
       {/* Floating Geometric Shapes & Gradient Mesh Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
@@ -127,7 +119,7 @@ export function Hero() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-6xl sm:text-7xl md:text-9xl font-playfair font-semibold text-slate-900 dark:text-white tracking-tight"
+              className="text-6xl sm:text-7xl md:text-9xl font-semibold text-slate-900 dark:text-white tracking-tight"
             >
               {portfolioData.hero.name}
               <span className="text-cyan-600 dark:text-cyan-400">.</span>
@@ -143,7 +135,7 @@ export function Hero() {
 
           {/* Tagline / Context with JetBrains Mono */}
           <motion.div variants={itemVariants} className="mt-8 mb-16 max-w-2xl">
-            <p className="font-jetbrains text-lg md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
               &ldquo;{portfolioData.hero.tagline}&rdquo;
             </p>
           </motion.div>
@@ -157,7 +149,7 @@ export function Hero() {
               {/* Fill effect on hover */}
               <div className="absolute inset-0 bg-indigo-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
 
-              <span className="relative z-10 font-jetbrains text-sm tracking-widest uppercase font-medium">
+              <span className="relative z-10 text-sm tracking-widest uppercase font-medium">
                 Begin the Journey
               </span>
               <motion.span

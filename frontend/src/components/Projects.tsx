@@ -25,10 +25,10 @@ export function Projects() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <span className="font-jetbrains text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             04 / Projects
           </span>
-          <h2 className="font-playfair text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white mb-10">
+          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white mb-10">
             Things I've Built.
           </h2>
 
@@ -38,7 +38,7 @@ export function Projects() {
               <button
                 key={index}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2.5 rounded-full font-jetbrains text-sm tracking-wide transition-all duration-300 ${
+                className={`px-5 py-2.5 rounded-full text-sm tracking-wide transition-all duration-300 ${
                   activeCategory === category 
                   ? 'bg-indigo-600 dark:bg-cyan-500 text-white shadow-lg shadow-indigo-600/30 dark:shadow-cyan-400/20' 
                   : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700/50'
@@ -82,7 +82,7 @@ export function Projects() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
                       
                       {/* Category Badge on Image */}
-                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-jetbrains text-xs tracking-wider border border-white/10 uppercase">
+                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs tracking-wider border border-white/10 uppercase">
                         {project.category}
                       </span>
                     </div>
@@ -90,7 +90,7 @@ export function Projects() {
                     {/* Content Block */}
                     <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white dark:bg-slate-950">
                       
-                      <h4 className="font-playfair text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-cyan-400 transition-colors">
+                      <h4 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-cyan-400 transition-colors">
                         {project.title}
                       </h4>
                       
@@ -103,7 +103,7 @@ export function Projects() {
                         {project.stack.map((tech, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 text-xs font-jetbrains text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/50 rounded-md border border-slate-200 dark:border-slate-800"
+                            className="px-2.5 py-1 text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/50 rounded-md border border-slate-200 dark:border-slate-800"
                           >
                             {tech}
                           </span>
