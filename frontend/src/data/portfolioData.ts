@@ -82,49 +82,69 @@ export const portfolioData = {
   projects: [
     {
       title: "Cinematic E-Commerce",
+      role: "Full Stack",
+      year: "2024",
       description: "Designed an experiential storefront that boosted average engagement time by 300%. Integrates subtle scrollytelling with high-performance WebGL product reveals.",
       stack: ["React", "Node.js", "Framer Motion", "Three.js"],
       category: "Web",
       featured: true,
       liveLink: "https://example.com",
       githubLink: "https://github.com/example/ecommerce",
-      imageUrl: "https://images.unsplash.com/photo-1661956602116-aa6865609028?fit=crop&w=800&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1661956602116-aa6865609028?fit=crop&w=800&q=80",
+      impact: "300% engagement",
+      accentShape: { type: "circles", colors: ["#6366f1", "#818cf8", "#c7d2fe"] }
     },
     {
       title: "Nexus Task Manager",
+      role: "Frontend",
+      year: "2023",
       description: "Delivered a clean, distraction-free coordination layer adopted natively by startup teams. Features real-time sync and optimistic UI updates.",
       stack: ["Next.js", "Tailwind CSS", "Firebase"],
       category: "Web",
       featured: false,
       githubLink: "https://github.com/example/task-app",
-      imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?fit=crop&w=800&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?fit=crop&w=800&q=80",
+      impact: "10k+ users",
+      accentShape: { type: "grid", colors: ["#06b6d4", "#22d3ee", "#a5f3fc"] }
     },
     {
       title: "Dev Story Engine",
+      role: "Full Stack",
+      year: "2023",
       description: "A full open-source scrollytelling template for developers built on a modern Vite pipeline.",
       stack: ["Vite", "React", "Express"],
       category: "Web",
       featured: false,
       githubLink: "https://github.com/example/dev-story",
-      imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?fit=crop&w=800&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?fit=crop&w=800&q=80",
+      impact: "500+ stars",
+      accentShape: { type: "waves", colors: ["#8b5cf6", "#a78bfa", "#ddd6fe"] }
     },
     {
       title: "Terminal Weather",
+      role: "CLI Tool",
+      year: "2022",
       description: "A blazing fast CLI tool for weather forecasts without leaving your development environment.",
       stack: ["Go", "Cobra", "OpenWeather API"],
       category: "Tools",
       featured: false,
       githubLink: "https://github.com/example/terminal-weather",
-      imageUrl: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?fit=crop&w=800&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?fit=crop&w=800&q=80",
+      impact: "40% faster",
+      accentShape: { type: "diagonal", colors: ["#10b981", "#34d399", "#a7f3d0"] }
     },
     {
       title: "Aura Mobile Wallet",
+      role: "Mobile",
+      year: "2024",
       description: "A sleek, dark-themed crypto wallet app utilizing secure enclaves for key management.",
       stack: ["React Native", "Expo", "Ethers.js"],
       category: "Mobile",
       featured: true,
       liveLink: "https://example.com",
-      imageUrl: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?fit=crop&w=800&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?fit=crop&w=800&q=80",
+      impact: "5k+ downloads",
+      accentShape: { type: "rings", colors: ["#f59e0b", "#fbbf24", "#fde68a"] }
     }
   ],
   education: [
