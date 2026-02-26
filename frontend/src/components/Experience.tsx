@@ -15,7 +15,7 @@ export function Experience() {
   const scaleY = useTransform(scrollYProgress, [0.1, 0.8], [0, 1]);
 
   return (
-    <section id="experience" ref={containerRef} className="py-24 md:py-32 relative bg-white dark:bg-slate-950 overflow-hidden">
+    <section id="experience" ref={containerRef} className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Entrance Heading */}

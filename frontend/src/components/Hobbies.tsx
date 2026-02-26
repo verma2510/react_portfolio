@@ -30,7 +30,7 @@ const items = [
 
 export function Hobbies() {
   return (
-    <section id="hobbies" className="py-24 md:py-32 relative bg-slate-50 dark:bg-slate-900 overflow-hidden">
+    <section id="hobbies" className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mb-16 md:mb-24">
         
         {/* Entrance Heading */}

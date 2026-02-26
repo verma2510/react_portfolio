@@ -15,7 +15,7 @@ export function About() {
   const imgY = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
-    <section id="about" ref={containerRef} className="py-24 md:py-32 relative bg-white dark:bg-slate-950 overflow-hidden">
+    <section id="about" ref={containerRef} className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Entrance Heading */}

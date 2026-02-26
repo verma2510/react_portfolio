@@ -49,13 +49,13 @@ export function Certifications() {
               <motion.div 
                 variants={cardVariants}
                 key={index}
-                className={`group relative h-full aspect-[4/3] rounded-3xl p-[2px] transition-all duration-500 transform ${tiltClass} hover:rotate-0 hover:-translate-y-2 hover:z-10`}
+                className={`group relative h-full w-full flex flex-col rounded-3xl p-[2px] transition-all duration-500 transform ${tiltClass} hover:rotate-0 hover:-translate-y-2 hover:z-10`}
               >
                 {/* Holographic Animated Border layer */}
                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(45deg,transparent_25%,rgba(99,102,241,0.5)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%] hover:animate-holographic" />
                 
                 {/* Inner Card content */}
-                <div className="relative h-full w-full bg-white dark:bg-slate-900 rounded-[22px] overflow-hidden glass-panel border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between z-10">
+                <div className="relative h-full w-full bg-white dark:bg-slate-900 rounded-[22px] overflow-hidden glass-panel border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between z-10 flex-grow">
                   
                   {/* Verified Header */}
                   <div className="flex justify-between items-start mb-4">

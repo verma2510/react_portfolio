@@ -14,7 +14,7 @@ export function Education() {
   };
 
   return (
-    <section id="education" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+    <section id="education" className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading */}
