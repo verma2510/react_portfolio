@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun, Download } from 'lucide-react';
-import { useScrollSpy } from '../hooks/useScrollSpy';
+import { NavLink, Link } from 'react-router-dom';
 import { useTheme } from './ThemeProvider';
 import { portfolioData } from '../data/portfolioData';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Skills', href: '/skills' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const activeSectionId = useScrollSpy(navLinks.map((l) => l.href.substring(1)), 100);
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -24,25 +23,25 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#home" className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-indigo-400 dark:to-cyan-400">
+            <Link to="/" className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-indigo-400 dark:to-cyan-400">
               {portfolioData.hero.name}
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex space-x-2">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.name}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-full text-sm font-semibold transition-colors ${
-                    activeSectionId === link.href.substring(1)
+                  to={link.href}
+                  className={({ isActive }) => `px-3 py-2 rounded-full text-sm font-semibold transition-colors ${
+                    isActive
                       ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
                       : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900'
                   }`}
                 >
                   {link.name}
-                </a>
+                </NavLink>
               ))}
             </div>
 
@@ -93,18 +92,18 @@ export function Navbar() {
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-sm font-semibold mb-1 transition-colors ${
-                    activeSectionId === link.href.substring(1)
+                  className={({ isActive }) => `block px-4 py-3 rounded-xl text-sm font-semibold mb-1 transition-colors ${
+                    isActive
                       ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600'
                   }`}
                 >
                   {link.name}
-                </a>
+                </NavLink>
               ))}
               <a
                 href={portfolioData.hero.resumeUrl}

@@ -1,6 +1,7 @@
 import { motion, useSpring, type Variants } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
 export function Hero() {
@@ -142,8 +143,8 @@ export function Hero() {
 
           {/* CTA Button */}
           <motion.div variants={itemVariants}>
-            <a
-              href="#about"
+            <Link
+              to="/about"
               className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-400/50 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
             >
               {/* Fill effect on hover */}
@@ -159,7 +160,7 @@ export function Hero() {
               >
                 ↓
               </motion.span>
-            </a>
+            </Link>
           </motion.div>
 
         </motion.div>
