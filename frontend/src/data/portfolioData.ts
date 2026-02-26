@@ -22,39 +22,60 @@ export const portfolioData = {
     ]
   },
   skills: {
-    topSkills: [
-      { name: "React", level: 95 },
-      { name: "Node.js", level: 85 },
-      { name: "TypeScript", level: 90 },
-      { name: "Python", level: 80 },
-      { name: "AWS", level: 65 }
-    ],
-    categories: {
-      "Frontend": [
-        { name: "React / Next.js", icon: "Code" },
-        { name: "TypeScript", icon: "FileCode" },
-        { name: "Tailwind CSS", icon: "Palette" },
-        { name: "Framer Motion", icon: "Sparkles" }
-      ],
-      "Backend": [
-        { name: "Node.js / Express", icon: "Cpu" },
-        { name: "Python / Django", icon: "Terminal" },
-        { name: "PostgreSQL", icon: "Database" },
-        { name: "MongoDB", icon: "Database" }
-      ],
-      "Tools & DevOps": [
-        { name: "Git & GitHub", icon: "GitBranch" },
-        { name: "Docker", icon: "Package" },
-        { name: "AWS", icon: "Cloud" },
-        { name: "Firebase", icon: "Flame" }
-      ],
-      "Others": [
-        { name: "Figma", icon: "PenTool" },
-        { name: "C++", icon: "Braces" },
-        { name: "Streamlit", icon: "Box" },
-        { name: "Gen AI", icon: "Sparkles" }
-      ]
-    }
+    solarSystem: [
+      {
+        category: "Frontend",
+        orbitRadius: 190,
+        color: "#6366f1",
+        rotationSpeed: 60,
+        rotationDirection: 1,
+        skills: [
+          { name: "React", icon: "react", proficiency: 95, years: 4, note: "Primary framework, 6+ production apps" },
+          { name: "TypeScript", icon: "typescript", proficiency: 90, years: 3, note: "Used in all recent projects" },
+          { name: "Tailwind CSS", icon: "tailwind", proficiency: 85, years: 3, note: "Go-to styling solution" },
+          { name: "Framer Motion", icon: "framer", proficiency: 80, years: 2, note: "Animation-heavy UIs" }
+        ]
+      },
+      {
+        category: "Backend",
+        orbitRadius: 300,
+        color: "#06b6d4",
+        rotationSpeed: 80,
+        rotationDirection: -1,
+        skills: [
+          { name: "Node.js", icon: "node", proficiency: 85, years: 4, note: "REST & GraphQL APIs" },
+          { name: "Python", icon: "python", proficiency: 80, years: 3, note: "Scripting & ML pipelines" },
+          { name: "PostgreSQL", icon: "postgresql", proficiency: 75, years: 2, note: "Complex query design" },
+          { name: "MongoDB", icon: "mongodb", proficiency: 70, years: 2, note: "NoSQL at scale" }
+        ]
+      },
+      {
+        category: "Tools & DevOps",
+        orbitRadius: 400,
+        color: "#10b981",
+        rotationSpeed: 100,
+        rotationDirection: 1,
+        skills: [
+          { name: "Git", icon: "git", proficiency: 90, years: 5, note: "Advanced branching & workflows" },
+          { name: "Docker", icon: "docker", proficiency: 70, years: 2, note: "Containerized deployments" },
+          { name: "AWS", icon: "aws", proficiency: 65, years: 2, note: "EC2, S3, Lambda" },
+          { name: "Firebase", icon: "firebase", proficiency: 75, years: 3, note: "Auth, Firestore, Hosting" }
+        ]
+      },
+      {
+        category: "Others",
+        orbitRadius: 500,
+        color: "#f59e0b",
+        rotationSpeed: 120,
+        rotationDirection: -1,
+        skills: [
+          { name: "Figma", icon: "figma", proficiency: 80, years: 3, note: "Design-to-code pipeline" },
+          { name: "C++", icon: "cpp", proficiency: 70, years: 4, note: "Competitive programming" },
+          { name: "Streamlit", icon: "streamlit", proficiency: 65, years: 1, note: "Rapid data app prototyping" },
+          { name: "Gen AI", icon: "openai", proficiency: 75, years: 1, note: "LLM integration & prompt eng." }
+        ]
+      }
+    ]
   },
   experience: [
     {
