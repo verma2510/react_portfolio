@@ -1,0 +1,7 @@
+﻿src/components/InfiniteMenu.tsx(1,10): error TS1484: 'FC' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/InfiniteMenu.tsx(1,43): error TS1484: 'MutableRefObject' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/InfiniteMenu.tsx(725,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/components/InfiniteMenu.tsx(726,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/components/InfiniteMenu.tsx(727,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/components/InfiniteMenu.tsx(728,5): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+src/components/SplashCursor.tsx(2,8): error TS6133: 'React' is declared but its value is never read.
