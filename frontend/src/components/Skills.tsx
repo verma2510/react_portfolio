@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { RotateCcw, X } from 'lucide-react';
 import {
   SiReact, SiTypescript, SiTailwindcss, SiFramer,
@@ -55,6 +55,13 @@ interface CategoryData {
 }
 
 /* ──────────────────────────────────────────────
+   LAYOUT CONSTANTS — concentric ellipses
+   ────────────────────────────────────────────── */
+// Fixed orbital radii per category — unique, well-separated
+const ORBIT_RADII = [150, 280, 420, 560]; // Frontend, Backend, Tools, Others — 130px gaps
+const ELLIPSE_RATIO = 0.42; // height/width ratio for perspective look
+
+/* ──────────────────────────────────────────────
    Star Field (CSS box-shadow trick)
    ────────────────────────────────────────────── */
 function generateStars(count: number): string {
@@ -71,6 +78,20 @@ function generateStars(count: number): string {
 
 const STARS_1 = generateStars(100);
 const STARS_2 = generateStars(50);
+
+/* ──────────────────────────────────────────────
+   Ellipse position helpers
+   ────────────────────────────────────────────── */
+function ellipsePosition(angleDeg: number, rx: number, ry: number) {
+  const rad = (angleDeg * Math.PI) / 180;
+  return {
+    x: Math.cos(rad) * rx,
+    y: Math.sin(rad) * ry,
+  };
+}
+
+
+
 
 /* ──────────────────────────────────────────────
    Proficiency Arc (hand-drawn SVG)
@@ -142,53 +163,62 @@ function SkillTooltip({ skill, color, onClose }: { skill: SkillData; color: stri
    Skill Moon (icon-based node on orbit)
    ────────────────────────────────────────────── */
 function SkillMoon({
-  skill, angle, orbitRadius, color, catIndex, skillIndex,
-  selectedSkill, onSelectSkill, isDimmed, isPaused
+  skill, angle, orbitRx, orbitRy, color, catIndex, skillIndex,
+  selectedSkill, onSelectSkill, isDimmed, onPause, onResume,
 }: {
   skill: SkillData;
   angle: number;
-  orbitRadius: number;
+  orbitRx: number;
+  orbitRy: number;
   color: string;
   catIndex: number;
   skillIndex: number;
   selectedSkill: string | null;
   onSelectSkill: (id: string | null) => void;
   isDimmed: boolean;
-  isPaused: boolean;
+  onPause: () => void;
+  onResume: () => void;
 }) {
   const Icon = ICON_MAP[skill.icon];
-  const moonSize = 30 + (skill.proficiency / 100) * 14; // 30–44px
-  const x = Math.cos((angle * Math.PI) / 180) * orbitRadius;
-  const y = Math.sin((angle * Math.PI) / 180) * orbitRadius * 0.45;
+  const moonSize = 36 + (skill.proficiency / 100) * 16; // 36–52px
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100 + catIndex * 220 + skillIndex * 90);
+    return () => clearTimeout(timer);
+  }, [catIndex, skillIndex]);
+
+  const pos = ellipsePosition(angle, orbitRx, orbitRy);
   const skillId = `${catIndex}-${skillIndex}`;
   const isSelected = selectedSkill === skillId;
 
   return (
-    <motion.div
+    <div
       className="absolute pointer-events-auto"
+      onMouseEnter={onPause}
+      onMouseLeave={onResume}
       style={{
-        left: `calc(50% + ${x}px)`,
-        top: `calc(50% + ${y}px)`,
-        transform: 'translate(-50%, -50%)',
+        left: `calc(50% + ${pos.x}px)`,
+        top: `calc(50% + ${pos.y}px)`,
+        transform: `translate(-50%, -50%) scale(${mounted ? 1 : 0})`,
+        opacity: mounted ? (isDimmed ? 0.15 : 1) : 0,
         zIndex: isSelected ? 50 : 15,
+        transition: 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease',
       }}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: isDimmed ? 0.12 : 1 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.5 + catIndex * 0.22 + skillIndex * 0.09 }}
     >
       <motion.button
         onClick={(e) => { e.stopPropagation(); onSelectSkill(isSelected ? null : skillId); }}
-        whileHover={{ scale: 1.2 }}
+        whileHover={{ scale: 1.25 }}
         className="relative flex items-center justify-center rounded-full cursor-pointer group/moon focus:outline-none"
         style={{
           width: moonSize,
           height: moonSize,
-          background: `radial-gradient(circle at 35% 35%, white 0%, ${color}18 100%)`,
-          border: `2px solid ${color}55`,
+          background: `radial-gradient(circle at 35% 35%, rgba(255,255,255,0.95) 0%, ${color}30 100%)`,
+          border: `2px solid ${color}88`,
           boxShadow: isSelected
-            ? `0 0 20px ${color}55, 0 0 40px ${color}22`
-            : `0 0 8px ${color}22`,
-          transition: 'box-shadow 0.3s ease, opacity 0.4s ease',
+            ? `0 0 24px ${color}66, 0 0 48px ${color}33`
+            : `0 0 12px ${color}33, 0 0 4px ${color}22`,
+          transition: 'box-shadow 0.3s ease',
         }}
       >
         {/* Brand icon */}
@@ -196,7 +226,7 @@ function SkillMoon({
 
         {/* Pulse ring */}
         <span className="absolute inset-0 rounded-full opacity-0 group-hover/moon:opacity-30 transition-opacity duration-300"
-          style={{ border: `2px solid ${color}`, animation: isPaused ? 'none' : undefined }} />
+          style={{ border: `2px solid ${color}` }} />
 
         {/* Hover label */}
         <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-semibold whitespace-nowrap opacity-0 group-hover/moon:opacity-100 transition-opacity duration-200 pointer-events-none bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 backdrop-blur-sm px-2.5 py-1 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700/50">
@@ -207,7 +237,7 @@ function SkillMoon({
       <AnimatePresence>
         {isSelected && <SkillTooltip skill={skill} color={color} onClose={() => onSelectSkill(null)} />}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
@@ -215,37 +245,45 @@ function SkillMoon({
    Category Planet
    ────────────────────────────────────────────── */
 function CategoryPlanet({
-  category, orbitRadius, color, index, onClick, isFocused, isDimmed
+  category, angle, orbitRx, orbitRy, color, index, onClick, isFocused, isDimmed, onPause, onResume
 }: {
-  category: string; orbitRadius: number; color: string;
+  category: string; angle: number; orbitRx: number; orbitRy: number; color: string;
   index: number; onClick: () => void;
   isFocused: boolean; isDimmed: boolean;
+  onPause: () => void;
+  onResume: () => void;
 }) {
-  const baseAngles = [225, 50, 145, 315];
-  const angle = baseAngles[index % baseAngles.length];
-  const x = Math.cos((angle * Math.PI) / 180) * orbitRadius;
-  const y = Math.sin((angle * Math.PI) / 180) * orbitRadius * 0.45;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 100 + index * 180);
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  const pos = ellipsePosition(angle, orbitRx, orbitRy);
 
   return (
-    <motion.button
+    <div
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className="absolute pointer-events-auto cursor-pointer focus:outline-none group/planet z-20"
+      onMouseEnter={onPause}
+      onMouseLeave={onResume}
+      className="absolute pointer-events-auto cursor-pointer group/planet"
       style={{
-        left: `calc(50% + ${x}px)`,
-        top: `calc(50% + ${y}px)`,
-        transform: 'translate(-50%, -50%)',
+        left: `calc(50% + ${pos.x}px)`,
+        top: `calc(50% + ${pos.y}px)`,
+        transform: `translate(-50%, -50%) scale(${mounted ? 1 : 0})`,
+        opacity: mounted ? (isDimmed ? 0.15 : 1) : 0,
+        zIndex: 20,
+        transition: 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease',
       }}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: isDimmed ? 0.15 : 1 }}
-      transition={{ type: 'spring', stiffness: 250, damping: 18, delay: 0.25 + index * 0.18 }}
-      whileHover={{ scale: 1.15 }}
     >
-      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-shadow duration-300"
+      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center hover:scale-110"
         style={{
           background: `radial-gradient(circle at 35% 35%, ${color}ee, ${color}99)`,
           boxShadow: isFocused
             ? `0 0 35px ${color}66, 0 0 70px ${color}22`
             : `0 0 18px ${color}33`,
+          transition: 'transform 0.2s ease, box-shadow 0.3s ease',
         }}>
         <span className="text-white text-[10px] md:text-xs font-bold tracking-wide text-center leading-tight px-1">
           {category.split(' ')[0]}
@@ -254,7 +292,7 @@ function CategoryPlanet({
       <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-[10px] text-slate-500 dark:text-slate-400 whitespace-nowrap font-medium opacity-0 group-hover/planet:opacity-100 transition-opacity">
         {category}
       </span>
-    </motion.button>
+    </div>
   );
 }
 
@@ -337,25 +375,136 @@ function MobileAccordion({ data }: { data: CategoryData[] }) {
 }
 
 /* ──────────────────────────────────────────────
+   Orbit Ring — clean concentric ellipse path
+   ────────────────────────────────────────────── */
+function OrbitRing({
+  rx, ry, color, isDimmed, catIndex,
+}: {
+  rx: number; ry: number; color: string; isDimmed: boolean; catIndex: number;
+}) {
+  const circ = Math.PI * (3 * (rx + ry) - Math.sqrt((3 * rx + ry) * (rx + 3 * ry))); // Ramanujan approx
+  return (
+    <svg
+      className="absolute left-1/2 top-1/2 pointer-events-none"
+      style={{
+        width: rx * 2,
+        height: ry * 2,
+        marginLeft: -rx,
+        marginTop: -ry,
+        opacity: isDimmed ? 0.06 : 0.22,
+        transition: 'opacity 0.5s ease',
+      }}
+    >
+      <motion.ellipse
+        cx={rx} cy={ry}
+        rx={rx - 1} ry={ry - 1}
+        fill="none" stroke={color} strokeWidth="1"
+        strokeDasharray={circ}
+        initial={{ strokeDashoffset: circ }}
+        whileInView={{ strokeDashoffset: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, ease: 'easeOut', delay: 0.15 + catIndex * 0.3 }}
+      />
+      {/* Dashed secondary ring for depth */}
+      <ellipse
+        cx={rx} cy={ry}
+        rx={rx - 1} ry={ry - 1}
+        fill="none" stroke={color} strokeWidth="0.5"
+        strokeDasharray="5 8" opacity="0.3"
+      />
+    </svg>
+  );
+}
+
+/* ──────────────────────────────────────────────
    MAIN: Skills Section — Skill Solar System
    ────────────────────────────────────────────── */
 export function Skills() {
   const [focusedCategory, setFocusedCategory] = useState<number | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const animFrameRef = useRef<number>(0);
 
-  const handleCanvasClick = useCallback(() => { setSelectedSkill(null); }, []);
+  // Pre-compute collision-free angles for each category
+  const categoryLayout = useMemo(() => {
+    const allPositions: { x: number; y: number }[] = [];
+    const layout: { rx: number; ry: number; planetAngle: number; moonAngles: number[] }[] = [];
+
+    // Stagger starting angles so planets don't line up
+    const planetStartAngles = [200, 40, 320, 140];
+
+    solarData.forEach((cat, catIndex) => {
+      const rx = ORBIT_RADII[catIndex];
+      const ry = rx * ELLIPSE_RATIO;
+      const planetAngle = planetStartAngles[catIndex];
+
+      // Record planet position
+      const planetPos = ellipsePosition(planetAngle, rx, ry);
+      allPositions.push(planetPos);
+
+      // Fan moons in a tight arc centered on the planet angle.
+      // Arc half-width: 22° per skill so 4 skills = ±44° total fan.
+      const arcHalf = Math.min(22 * cat.skills.length / 2, 55);
+      let moonAngles: number[];
+      if (cat.skills.length === 1) {
+        moonAngles = [(planetAngle + 18) % 360];
+      } else {
+        const step = (arcHalf * 2) / (cat.skills.length - 1);
+        moonAngles = cat.skills.map((_, i) =>
+          (planetAngle - arcHalf + i * step + 360) % 360
+        );
+      }
+
+      // Record all moon positions
+      moonAngles.forEach(a => {
+        allPositions.push(ellipsePosition(a, rx, ry));
+      });
+
+      layout.push({ rx, ry, planetAngle, moonAngles });
+    });
+
+    return layout;
+  }, []);
+
+  // Animation state: continuously update angles for rotation
+  const [rotationOffsets, setRotationOffsets] = useState<number[]>(
+    solarData.map(() => 0)
+  );
+
+  useEffect(() => {
+    let lastTime = performance.now();
+
+    const animate = (time: number) => {
+      const dt = (time - lastTime) / 1000; // seconds
+      lastTime = time;
+
+      if (!isPaused) {
+        setRotationOffsets(prev =>
+          prev.map((offset, i) => {
+            const speed = 360 / solarData[i].rotationSpeed; // degrees per second
+            const dir = solarData[i].rotationDirection;
+            return offset + speed * dir * dt;
+          })
+        );
+      }
+
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animFrameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animFrameRef.current);
+  }, [isPaused]);
 
   // Camera transform for focused category
   const cam = useMemo(() => {
     if (focusedCategory === null) return { scale: 1, x: 0, y: 0 };
-    const cat = solarData[focusedCategory];
-    const angles = [225, 50, 145, 315];
-    const a = angles[focusedCategory % angles.length];
-    const px = Math.cos((a * Math.PI) / 180) * cat.orbitRadius;
-    const py = Math.sin((a * Math.PI) / 180) * cat.orbitRadius * 0.45;
-    return { scale: 1.6, x: -px, y: -py };
-  }, [focusedCategory]);
+    const layout = categoryLayout[focusedCategory];
+    const angle = layout.planetAngle + rotationOffsets[focusedCategory];
+    const pos = ellipsePosition(angle, layout.rx, layout.ry);
+    return { scale: 1.5, x: -pos.x, y: -pos.y };
+  }, [focusedCategory, categoryLayout, rotationOffsets]);
+
+  const handleCanvasClick = useCallback(() => { setSelectedSkill(null); }, []);
 
   // ESC to reset
   useEffect(() => {
@@ -418,8 +567,8 @@ export function Skills() {
             DESKTOP: Solar System
             ══════════════════════════ */}
         <div
-          className="hidden md:block relative mx-auto overflow-hidden"
-          style={{ height: '850px', maxWidth: '1100px' }}
+          className="hidden md:block relative mx-auto"
+          style={{ height: '860px', maxWidth: '1200px' }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => { setIsPaused(false); }}
           onClick={handleCanvasClick}
@@ -437,7 +586,7 @@ export function Skills() {
           >
             {/* ── SUN (center core) ── */}
             <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-auto"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] pointer-events-auto"
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -464,82 +613,58 @@ export function Skills() {
             {solarData.map((cat, catIndex) => {
               const isDimmed = focusedCategory !== null && focusedCategory !== catIndex;
               const isFocused = focusedCategory === catIndex;
-              const orbitC = 2 * Math.PI * cat.orbitRadius;
+              const layout = categoryLayout[catIndex];
+              const rotOffset = rotationOffsets[catIndex];
 
-              // Distribute moons around the planet
-              const baseAngles = [225, 50, 145, 315];
-              const planetAngle = baseAngles[catIndex % baseAngles.length];
-              const spread = 55;
-              const moonAngles = cat.skills.map((_, i) => {
-                const step = spread / (cat.skills.length - 1 || 1);
-                return planetAngle - spread / 2 + i * step;
-              });
-
-              // Rotation animation style
-              const rotDir = cat.rotationDirection === 1 ? '' : ' reverse';
-              const rotStyle: React.CSSProperties = {
-                animation: isPaused
-                  ? 'none'
-                  : `spin ${cat.rotationSpeed}s linear infinite${rotDir}`,
-                transformOrigin: '50% 50%',
-                position: 'absolute' as const,
-                inset: 0,
-              };
+              const planetAngle = layout.planetAngle + rotOffset;
 
               return (
                 <div key={cat.category}>
-                  {/* Orbit Ring — does NOT rotate (stays visible as reference) */}
-                  <svg
-                    className="absolute left-1/2 top-1/2 pointer-events-none"
-                    style={{
-                      width: cat.orbitRadius * 2,
-                      height: cat.orbitRadius * 0.9,
-                      marginLeft: -cat.orbitRadius,
-                      marginTop: -cat.orbitRadius * 0.45,
-                      opacity: isDimmed ? 0.06 : 0.2,
-                      transition: 'opacity 0.5s ease',
-                    }}
-                  >
-                    <motion.ellipse
-                      cx={cat.orbitRadius} cy={cat.orbitRadius * 0.45}
-                      rx={cat.orbitRadius - 1} ry={cat.orbitRadius * 0.45 - 1}
-                      fill="none" stroke={cat.color} strokeWidth="1"
-                      strokeDasharray={orbitC}
-                      initial={{ strokeDashoffset: orbitC }}
-                      whileInView={{ strokeDashoffset: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, ease: 'easeOut', delay: 0.15 + catIndex * 0.3 }}
-                    />
-                    {/* Second dashed ring for depth */}
-                    <ellipse
-                      cx={cat.orbitRadius} cy={cat.orbitRadius * 0.45}
-                      rx={cat.orbitRadius - 1} ry={cat.orbitRadius * 0.45 - 1}
-                      fill="none" stroke={cat.color} strokeWidth="0.5"
-                      strokeDasharray="5 8" opacity="0.3"
-                    />
-                  </svg>
+                  {/* Orbit Ring — static, does NOT rotate */}
+                  <OrbitRing
+                    rx={layout.rx}
+                    ry={layout.ry}
+                    color={cat.color}
+                    isDimmed={isDimmed}
+                    catIndex={catIndex}
+                  />
 
-                  {/* Rotating container for planets + moons */}
-                  <div style={rotStyle}>
-                    {/* Planet */}
-                    <CategoryPlanet
-                      category={cat.category} orbitRadius={cat.orbitRadius}
-                      color={cat.color} index={catIndex}
-                      onClick={() => { setFocusedCategory(isFocused ? null : catIndex); setSelectedSkill(null); }}
-                      isFocused={isFocused} isDimmed={isDimmed}
-                    />
+                  {/* Planet */}
+                  <CategoryPlanet
+                    category={cat.category}
+                    angle={planetAngle}
+                    orbitRx={layout.rx}
+                    orbitRy={layout.ry}
+                    color={cat.color}
+                    index={catIndex}
+                    onClick={() => { setFocusedCategory(isFocused ? null : catIndex); setSelectedSkill(null); }}
+                    isFocused={isFocused}
+                    isDimmed={isDimmed}
+                    onPause={() => setIsPaused(true)}
+                    onResume={() => setIsPaused(false)}
+                  />
 
-                    {/* Moons */}
-                    {cat.skills.map((skill, si) => (
-                      <SkillMoon key={skill.name}
-                        skill={skill} angle={moonAngles[si]} orbitRadius={cat.orbitRadius}
-                        color={cat.color} catIndex={catIndex} skillIndex={si}
+                  {/* Moons — each on the same orbit, spread evenly */}
+                  {cat.skills.map((skill, si) => {
+                    const moonAngle = layout.moonAngles[si] + rotOffset;
+                    return (
+                      <SkillMoon
+                        key={skill.name}
+                        skill={skill}
+                        angle={moonAngle}
+                        orbitRx={layout.rx}
+                        orbitRy={layout.ry}
+                        color={cat.color}
+                        catIndex={catIndex}
+                        skillIndex={si}
                         selectedSkill={selectedSkill}
                         onSelectSkill={setSelectedSkill}
-                        isDimmed={isDimmed} isPaused={isPaused}
+                        isDimmed={isDimmed}
+                        onPause={() => setIsPaused(true)}
+                        onResume={() => setIsPaused(false)}
                       />
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
               );
             })}

@@ -187,7 +187,7 @@ function AnimatedTitle({ text, keyProp }: { text: string; keyProp: number }) {
     <AnimatePresence mode="wait">
       <motion.h3
         key={keyProp}
-        className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-indigo-700 dark:text-white tracking-tight leading-[1.1]"
+        className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-indigo-700 dark:text-cyan-400 tracking-tight leading-[1.1]"
         style={{ fontFamily: '"Google Sans", sans-serif' }}
         initial="hidden"
         animate="visible"
