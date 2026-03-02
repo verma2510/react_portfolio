@@ -11,7 +11,6 @@ import { Education } from './components/Education';
 import { Certifications } from './components/Certifications';
 import { Hobbies } from './components/Hobbies';
 import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
 import { ProgressIndicator } from './components/ProgressIndicator';
 
 function App() {
