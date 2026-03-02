@@ -443,11 +443,18 @@ export function Skills() {
       allPositions.push(planetPos);
 
       // Fan moons in a tight arc centered on the planet angle.
-      // Arc half-width: 22° per skill so 4 skills = ±44° total fan.
-      const arcHalf = Math.min(22 * cat.skills.length / 2, 55);
+      let arcHalf = Math.min(22 * cat.skills.length / 2, 85);
+      
+      // Increased gaps specifically for the Frontend orbit
+      if (cat.category === 'Frontend') {
+        arcHalf = Math.min(32 * cat.skills.length / 2, 95); 
+      }
+
       let moonAngles: number[];
       if (cat.skills.length === 1) {
-        moonAngles = [(planetAngle + 18) % 360];
+        let singleMoonOffset = 18;
+        if (cat.category === 'Frontend') singleMoonOffset = 30;
+        moonAngles = [(planetAngle + singleMoonOffset) % 360];
       } else {
         const step = (arcHalf * 2) / (cat.skills.length - 1);
         moonAngles = cat.skills.map((_, i) =>
