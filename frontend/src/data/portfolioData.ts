@@ -1,5 +1,18 @@
 // TODO: Update all these placeholder values with your real information
 
+export interface ExperienceEntry {
+  company: string;
+  role: string;
+  period: { start: string; end: string };
+  descriptor: string;
+  pullQuote: string;
+  achievements: string[];
+  responsibilities: string[];
+  stack: string[];
+  stackTooltips?: Record<string, string>;
+  duration: string;
+}
+
 export const portfolioData = {
   hero: {
     name: "Aman V.",
@@ -79,25 +92,71 @@ export const portfolioData = {
   },
   experience: [
     {
-      role: "Software Engineer",
-      company: "Tech Corp",
-      duration: "2021 - Present",
+      company: "Anthropic",
+      role: "Senior Software Engineer",
+      period: { start: "Jan 2022", end: "Mar 2024" },
+      descriptor: "AI safety research company building reliable, interpretable AI systems",
+      pullQuote: "Reduced inference latency by 60%, directly improving response quality for 2M+ daily active users",
       achievements: [
-        "Architected scalable microservices, increasing system throughput by 40%.",
-        "Pioneered a cinematic frontend revamp combining React and WebGL.",
-        "Mentored a team of 3 junior developers to full independence."
+        "Architected a real-time data pipeline processing 500k events per day with sub-10ms p99",
+        "Led migration of monolithic frontend to micro-frontend architecture across 6 product teams",
+        "Mentored 4 junior engineers, 2 of whom were promoted to mid-level within a year"
       ],
-      stack: ["React", "Node.js", "Docker", "AWS"]
+      responsibilities: ["System architecture", "Team mentorship", "API design", "Code reviews", "Incident response", "Roadmap planning"],
+      stack: ["React", "TypeScript", "Python", "AWS", "Redis", "GraphQL"],
+      stackTooltips: {
+        "React": "Built all consumer-facing product surfaces",
+        "TypeScript": "Enforced strict typing across 200k+ line codebase",
+        "Python": "ML pipeline orchestration and data tooling",
+        "AWS": "Multi-region infra: ECS, Lambda, RDS, S3",
+        "Redis": "Session management and real-time pub/sub",
+        "GraphQL": "Unified API gateway across 12 microservices"
+      },
+      duration: "26 months"
     },
     {
-      role: "Frontend Developer",
-      company: "Web Solutions Inc.",
-      duration: "2019 - 2021",
+      company: "Vercel",
+      role: "Software Engineer — DX",
+      period: { start: "Aug 2020", end: "Dec 2021" },
+      descriptor: "Cloud platform powering the modern web for 1M+ developers worldwide",
+      pullQuote: "Shipped the Analytics dashboard end-to-end in 6 weeks, now used by 400k projects monthly",
       achievements: [
-        "Crafted premium, interactive user interfaces with React and Framer Motion.",
-        "Halved initial page load time through strategic code splitting."
+        "Designed and shipped the Core Web Vitals analytics dashboard from zero to GA",
+        "Reduced CLI cold-start time by 45% through lazy-loading and compile-time tree shaking",
+        "Authored 12 open-source guides adopted as official developer documentation"
       ],
-      stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"]
+      responsibilities: ["Developer experience", "Open source", "CLI tooling", "Documentation", "Performance audits", "SDK design"],
+      stack: ["Next.js", "TypeScript", "Go", "Node.js", "Turborepo"],
+      stackTooltips: {
+        "Next.js": "Primary framework for all internal tooling surfaces",
+        "TypeScript": "Full type safety across SDK and CLI packages",
+        "Go": "High-performance proxy and edge runtime modules",
+        "Node.js": "Build system integrations and plugin APIs",
+        "Turborepo": "Monorepo task orchestration for 40+ packages"
+      },
+      duration: "16 months"
+    },
+    {
+      company: "Razorpay",
+      role: "Frontend Developer",
+      period: { start: "Jul 2019", end: "Jul 2020" },
+      descriptor: "India's leading payment gateway processing billions in annual transactions",
+      pullQuote: "Rebuilt the checkout flow UI, lifting conversion rates by 18% across 300k merchant storefronts",
+      achievements: [
+        "Redesigned the checkout SDK with a pixel-perfect, accessible component library",
+        "Halved bundle size from 420kB to 210kB via aggressive code splitting and lazy loading",
+        "Implemented A/B testing infrastructure used by 5 product squads simultaneously"
+      ],
+      responsibilities: ["UI component library", "A/B testing", "Accessibility", "Performance optimization", "Cross-browser QA"],
+      stack: ["React", "Vanilla JS", "SCSS", "Webpack", "Jest"],
+      stackTooltips: {
+        "React": "Rebuilt merchant dashboard and checkout surfaces",
+        "Vanilla JS": "Lightweight SDK with zero framework dependencies",
+        "SCSS": "Design token system for white-label theming",
+        "Webpack": "Custom build pipeline with dynamic chunking",
+        "Jest": "Unit and snapshot testing for 95% coverage"
+      },
+      duration: "12 months"
     }
   ],
   projects: [

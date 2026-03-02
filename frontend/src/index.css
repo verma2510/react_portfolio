@@ -1,5 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/google-sans');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -234,8 +234,13 @@
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Pause animation on hover if desired, or keep rolling */
@@ -243,3 +248,609 @@
 .marquee-container:hover .animate-marquee-reverse {
     animation-play-state: paused;
 } */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EXPERIENCE — Editorial Spread
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ─────────────────────────────────────────────────────── */
+.exp-section {
+    padding: 7rem 0 10rem;
+    background: rgb(248 250 252);
+    /* slate-50 — matches other light sections */
+    overflow: hidden;
+}
+
+.dark .exp-section {
+    background: rgb(15 23 42 / 0.3);
+    /* slate-900/30 — matches Contact & Skills dark */
+}
+
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.exp-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
+}
+
+.exp-eyebrow {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6366f1;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+}
+
+.dark .exp-eyebrow {
+    color: #22d3ee;
+}
+
+.exp-heading {
+    font-family: 'Google Sans', 'Product Sans', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: hsl(222, 47%, 11%);
+}
+
+.dark .exp-heading {
+    color: hsl(210, 40%, 98%);
+}
+
+/* ── Spread Container ────────────────────────────────────────────────────── */
+.exp-spread {
+    display: grid;
+    grid-template-columns: 38% 1px 62%;
+    min-height: 85vh;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    gap: 0;
+    /* Contain overflow so sticky works cleanly */
+    position: relative;
+}
+
+/* ── LEFT PANEL ─────────────────────────────────────────────────────────── */
+.exp-left-panel {
+    position: sticky;
+    top: 5rem;
+    /* Height = viewport minus navbar height */
+    height: calc(100vh - 5.5rem);
+    padding: 2.5rem 2.5rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* Let flex children determine overflow, not the parent */
+    overflow: visible;
+}
+
+/* Company name display block */
+.exp-name-display {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-bottom: 3rem;
+}
+
+.exp-company-name {
+    font-family: 'Google Sans', 'Product Sans', system-ui, sans-serif;
+    font-size: clamp(2.2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: hsl(222, 47%, 11%);
+    margin: 0;
+    /* Prevent text overflow on narrow viewports */
+    word-break: break-word;
+}
+
+.dark .exp-company-name {
+    color: hsl(210, 40%, 98%);
+}
+
+.exp-role-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #6366f1;
+    letter-spacing: 0.05em;
+    margin: 0.6rem 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dark .exp-role-mono {
+    color: #22d3ee;
+}
+
+.exp-period-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: hsl(215, 20%, 55%);
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.dark .exp-period-mono {
+    color: hsl(215, 20%, 45%);
+}
+
+.exp-descriptor {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: hsl(215, 16%, 47%);
+    margin: 0.5rem 0 0;
+    max-width: 28ch;
+}
+
+.dark .exp-descriptor {
+    color: hsl(215, 16%, 55%);
+}
+
+/* ── Index nav ───────────────────────────────────────────────────────────── */
+.exp-index-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid hsl(214, 32%, 91%);
+    padding-top: 2rem;
+}
+
+.dark .exp-index-nav {
+    border-top-color: hsl(217, 33%, 17%);
+}
+
+.exp-index-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.exp-index-bar {
+    display: block;
+    width: 2px;
+    height: 1.4rem;
+    background: hsl(214, 32%, 88%);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.dark .exp-index-bar {
+    background: hsl(217, 33%, 20%);
+}
+
+.exp-index-bar-fill {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: #6366f1;
+    border-radius: 2px;
+    transform-origin: top;
+}
+
+.dark .exp-index-bar-fill {
+    background: #22d3ee;
+}
+
+.exp-index-label {
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    color: hsl(222, 47%, 11%);
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.dark .exp-index-label {
+    color: hsl(210, 40%, 98%);
+}
+
+.exp-index-item--active .exp-index-label {
+    color: #6366f1;
+}
+
+.dark .exp-index-item--active .exp-index-label {
+    color: #22d3ee;
+}
+
+/* ── Centre divider ──────────────────────────────────────────────────────── */
+.exp-divider {
+    width: 1px;
+    background: hsl(214, 32%, 91%);
+    margin: 0;
+}
+
+.dark .exp-divider {
+    background: hsl(217, 33%, 17%);
+}
+
+/* ── RIGHT PANEL ─────────────────────────────────────────────────────────── */
+.exp-right-panel {
+    /* Match left panel height so scroll-snap works */
+    height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2.5rem 1.5rem 4rem 3rem;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(214, 32%, 88%) transparent;
+    scroll-snap-type: y mandatory;
+}
+
+.dark .exp-right-panel {
+    scrollbar-color: hsl(217, 33%, 20%) transparent;
+}
+
+/* ── Company Block ───────────────────────────────────────────────────────── */
+.exp-block {
+    min-height: calc(100vh - 5.5rem);
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Pull quote — keep Playfair italic for editorial feel */
+.exp-pull-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.15rem, 2vw, 1.65rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: hsl(222, 47%, 11%);
+    margin: 0 0 2.5rem;
+    padding: 0;
+    border: none;
+    position: relative;
+    max-width: 62ch;
+}
+
+.dark .exp-pull-quote {
+    color: hsl(210, 40%, 98%);
+}
+
+.exp-pull-quote-mark {
+    font-size: 2.4em;
+    font-style: normal;
+    line-height: 0;
+    vertical-align: -0.4em;
+    opacity: 0.15;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #6366f1;
+    margin: 0 0.15em;
+    pointer-events: none;
+}
+
+.dark .exp-pull-quote-mark {
+    color: #22d3ee;
+}
+
+/* Achievements */
+.exp-achievements-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2.5rem;
+}
+
+.exp-achievement-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid hsl(214, 32%, 93%);
+}
+
+.dark .exp-achievement-row {
+    border-top-color: hsl(217, 33%, 15%);
+}
+
+.exp-achievement-row:last-child {
+    border-bottom: 1px solid hsl(214, 32%, 93%);
+}
+
+.dark .exp-achievement-row:last-child {
+    border-bottom-color: hsl(217, 33%, 15%);
+}
+
+.exp-achievement-rule {
+    display: block;
+    width: 2px;
+    min-height: 1.1rem;
+    align-self: flex-start;
+    margin-top: 0.26rem;
+    background: #6366f1;
+    border-radius: 2px;
+    flex-shrink: 0;
+    opacity: 0.65;
+}
+
+.dark .exp-achievement-rule {
+    background: #22d3ee;
+}
+
+.exp-achievement-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: hsl(217, 33%, 35%);
+    display: block;
+    flex: 1;
+}
+
+.dark .exp-achievement-text {
+    color: hsl(215, 20%, 65%);
+}
+
+/* Responsibilities */
+.exp-responsibilities-section {
+    margin-bottom: 2.5rem;
+}
+
+.exp-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: hsl(215, 16%, 55%);
+    margin: 0 0 1rem;
+}
+
+.exp-responsibilities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem 2rem;
+}
+
+.exp-responsibility-item {
+    font-size: 0.83rem;
+    color: hsl(222, 30%, 30%);
+    line-height: 1.5;
+}
+
+.dark .exp-responsibility-item {
+    color: hsl(215, 20%, 60%);
+}
+
+/* Bottom row */
+.exp-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Stack Tags */
+.exp-stack-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.exp-stack-tag {
+    position: relative;
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid hsl(214, 32%, 85%);
+    border-radius: 3px;
+    color: hsl(217, 33%, 45%);
+    background: transparent;
+    cursor: default;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.dark .exp-stack-tag {
+    border-color: hsl(217, 33%, 22%);
+    color: hsl(215, 20%, 58%);
+}
+
+.exp-stack-tag:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+}
+
+.dark .exp-stack-tag:hover {
+    border-color: #22d3ee;
+    color: #22d3ee;
+}
+
+/* Stack Tooltip */
+.exp-stack-tooltip {
+    display: block;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: hsl(222, 47%, 11%);
+    color: hsl(210, 40%, 92%);
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 50;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+}
+
+.dark .exp-stack-tooltip {
+    background: hsl(217, 33%, 95%);
+    color: hsl(222, 47%, 11%);
+}
+
+.exp-stack-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: hsl(222, 47%, 11%);
+}
+
+.dark .exp-stack-tooltip::after {
+    border-top-color: hsl(217, 33%, 95%);
+}
+
+/* Duration stat */
+.exp-duration-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: hsl(215, 16%, 55%);
+    white-space: nowrap;
+}
+
+/* Block separator */
+.exp-block-rule {
+    height: 1px;
+    background: hsl(214, 32%, 91%);
+    margin-bottom: 0;
+}
+
+.dark .exp-block-rule {
+    background: hsl(217, 33%, 17%);
+}
+
+/* ── Mobile — Horizontal tab bar ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .exp-section {
+        padding: 4rem 0 5rem;
+    }
+
+    .exp-spread {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+    }
+
+    .exp-divider {
+        display: none;
+    }
+
+    /* Left panel becomes sticky horizontal tab bar */
+    .exp-left-panel {
+        position: sticky;
+        top: 4.5rem;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.85rem 1.25rem;
+        gap: 0;
+        background: hsl(0, 0%, 99%);
+        border-bottom: 1px solid hsl(214, 32%, 91%);
+        z-index: 30;
+        overflow-x: auto;
+        overflow-y: visible;
+        scrollbar-width: none;
+        justify-content: flex-start;
+    }
+
+    .dark .exp-left-panel {
+        background: hsl(222, 47%, 7%);
+        border-bottom-color: hsl(217, 33%, 17%);
+    }
+
+    .exp-left-panel::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide the big name area on mobile — tabs carry the info */
+    .exp-name-display {
+        display: none;
+    }
+
+    /* Nav becomes horizontal */
+    .exp-index-nav {
+        flex-direction: row;
+        gap: 0.5rem;
+        border-top: none;
+        padding-top: 0;
+        width: 100%;
+    }
+
+    .exp-index-item {
+        gap: 0.5rem;
+        padding: 0.45rem 0.85rem;
+        border: 1px solid hsl(214, 32%, 91%);
+        border-radius: 4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .dark .exp-index-item {
+        border-color: hsl(217, 33%, 20%);
+    }
+
+    .exp-index-item--active {
+        border-color: #6366f1;
+        background: hsl(238, 100%, 97%);
+    }
+
+    .dark .exp-index-item--active {
+        border-color: #22d3ee;
+        background: hsl(186, 100%, 5%);
+    }
+
+    .exp-index-bar {
+        display: none;
+    }
+
+    .exp-index-label {
+        font-size: 0.68rem;
+    }
+
+    /* Right panel becomes full-width scrollable */
+    .exp-right-panel {
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
+        padding: 2rem 1.25rem 3rem;
+        scroll-snap-type: none;
+    }
+
+    .exp-block {
+        min-height: auto;
+        scroll-snap-align: unset;
+        justify-content: flex-start;
+    }
+
+    /* Pull quote scale */
+    .exp-pull-quote {
+        font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+        margin-bottom: 2rem;
+    }
+
+    .exp-responsibilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exp-bottom-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -1,127 +1,338 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { useRef } from 'react';
 
-export function Experience() {
-  const containerRef = useRef<HTMLDivElement>(null);
+// ─── Types ────────────────────────────────────────────────────────────────────
+interface ExperienceEntry {
+  company: string;
+  role: string;
+  period: { start: string; end: string };
+  descriptor: string;
+  pullQuote: string;
+  achievements: string[];
+  responsibilities: string[];
+  stack: string[];
+  stackTooltips?: Record<string, string>;
+  duration: string;
+}
 
-  // Track scroll position to draw the central line downwards
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+// ─── Hook: Intersection-Observer-based active index ──────────────────────────
+function useActiveSection(refs: React.RefObject<HTMLDivElement | null>[]) {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Scale the center line from top to bottom as user scrolls
-  const scaleY = useTransform(scrollYProgress, [0.1, 0.8], [0, 1]);
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    refs.forEach((ref, i) => {
+      if (!ref.current) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveIndex(i);
+        },
+        { threshold: 0.45 }
+      );
+      obs.observe(ref.current);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [refs]);
+
+  return activeIndex;
+}
+
+// ─── Left Panel — Company Name with animated border ──────────────────────────
+function CompanyNameDisplay({ exp }: { exp: ExperienceEntry }) {
+  return (
+    <motion.div
+      key={exp.company}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="exp-name-display"
+    >
+      <h2 className="exp-company-name">{exp.company}</h2>
+      <p className="exp-role-mono" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>{exp.role}</p>
+      <p className="exp-period-mono" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>
+        {exp.period.start} — {exp.period.end}
+      </p>
+      <p className="exp-descriptor" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>{exp.descriptor}</p>
+    </motion.div>
+  );
+}
+
+// ─── Left Index Item ──────────────────────────────────────────────────────────
+function IndexItem({
+  company,
+  isActive,
+  onClick,
+}: {
+  company: string;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`exp-index-item ${isActive ? 'exp-index-item--active' : ''}`}
+      aria-current={isActive ? 'true' : undefined}
+    >
+      {/* Animated left bar */}
+      <span className="exp-index-bar" aria-hidden="true">
+        <motion.span
+          className="exp-index-bar-fill"
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: isActive ? 1 : 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </span>
+      <motion.span
+        className="exp-index-label"
+        animate={{
+          opacity: isActive ? 1 : 0.35,
+          fontWeight: isActive ? 600 : 400,
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        {company}
+      </motion.span>
+    </button>
+  );
+}
+
+// ─── Achievement Line with clip-path wipe ─────────────────────────────────────
+function AchievementLine({ text, delay }: { text: string; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <section id="experience" ref={containerRef} className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Entrance Heading */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-24 md:mb-32"
+    <div ref={ref} className="exp-achievement-row" >
+      <span className="exp-achievement-rule" aria-hidden="true" />
+      <motion.span
+        className="exp-achievement-text"
+        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+        animate={inView ? { clipPath: 'inset(0 0% 0 0)' } : {}}
+        transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {text}
+      </motion.span>
+    </div>
+  );
+}
+
+// ─── Stack Tag with tooltip ───────────────────────────────────────────────────
+function StackTag({
+  tech,
+  tooltip,
+}: {
+  tech: string;
+  tooltip?: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <span
+      className="exp-stack-tag"
+      style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {tech}
+      <AnimatePresence>
+        {hovered && tooltip && (
+          <motion.span
+            className="exp-stack-tooltip"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18 }}
+          >
+            {tooltip}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+}
+
+// ─── Right Panel — Single Company Block ──────────────────────────────────────
+function CompanyBlock({
+  exp,
+  blockRef,
+}: {
+  exp: ExperienceEntry;
+  blockRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  // Merge the scroll-target ref and our own inView ref
+  const setRefs = useCallback(
+    (node: HTMLDivElement | null) => {
+      (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      (blockRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    },
+    [blockRef]
+  );
+
+  return (
+    <motion.div
+      ref={setRefs}
+      className="exp-block"
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+    >
+
+      {/* Pull Quote */}
+      {exp.pullQuote && (
+        <blockquote
+          className="exp-pull-quote mt-2"
+          style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}
         >
-          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
-            03 / Experience
+          <span className="exp-pull-quote-mark" aria-hidden="true">
+            "
           </span>
-          <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">
-            Battles Fought.
-          </h2>
-        </motion.div>
+          {exp.pullQuote}
+          <span className="exp-pull-quote-mark" aria-hidden="true">
+            "
+          </span>
+        </blockquote>
+      )}
 
-        <div className="relative max-w-5xl mx-auto">
-          
-          {/* Static Center Line Background */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-slate-200 dark:bg-slate-800 -translate-x-1/2" />
-          
-          {/* Animated Draw Line */}
-          <motion.div 
-            style={{ scaleY }}
-            className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-indigo-500 via-cyan-400 to-transparent -translate-x-1/2 origin-top" 
-          />
+      {/* Achievements */}
+      <div className="exp-achievements-group">
+        {exp.achievements.map((a, i) => (
+          <AchievementLine key={i} text={a} delay={i * 0.15} />
+        ))}
+      </div>
 
-          <div className="flex flex-col space-y-8 md:space-y-8">
-            {portfolioData.experience.map((exp, index) => {
-              const isLeft = index % 2 === 0;
-
-              return (
-                <div key={index} className={`relative flex flex-col md:flex-row w-full group ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}>
-                  
-                  {/* Glowing Node on Timeline */}
-                  <div className="absolute left-[20px] md:left-1/2 top-[48px] md:top-1/2 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-[3px] border-indigo-500 dark:border-cyan-400 -translate-x-1/2 md:-translate-y-1/2 z-20 transition-all duration-300 group-hover:scale-150 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-
-                  {/* Main Card Content */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50, filter: "blur(5px)" }}
-                    whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`w-full md:w-1/2 pl-12 md:pl-0 ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}
-                  >
-                    <div className={`glass-panel p-8 md:p-10 rounded-2xl md:rounded-3xl border-l-[3px] md:border-l-0 border-transparent transition-all duration-500 group-hover:shadow-xl group-hover:shadow-indigo-500/10 dark:group-hover:shadow-cyan-400/10 dark:hover:bg-slate-900/80 bg-slate-50 relative overflow-hidden text-left hover:-translate-y-1 ${isLeft ? 'md:border-r-[3px] hover:border-l-indigo-500 md:hover:border-l-transparent md:hover:border-r-indigo-500 dark:hover:border-l-cyan-400 dark:md:hover:border-l-transparent dark:md:hover:border-r-cyan-400' : 'md:border-l-[3px] hover:border-l-indigo-500 dark:hover:border-l-cyan-400'}`}>
-                      
-                      {/* Chapter Label */}
-                      <span className="text-xs tracking-[0.2em] font-medium text-slate-400 dark:text-slate-500 uppercase block mb-6">
-                        Chapter 0{index + 1}
-                      </span>
-                      
-                      <div className="flex flex-col gap-1 mb-6">
-                        <h4 className="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white leading-tight">
-                          {exp.role}
-                        </h4>
-                        <div className="flex flex-wrap items-center gap-3">
-                          <span className="text-lg md:text-xl text-indigo-600 dark:text-cyan-400 font-medium">
-                            @ {exp.company}
-                          </span>
-                          <span className="text-sm text-slate-500 dark:text-slate-400 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-800/50">
-                            {exp.duration}
-                          </span>
-                        </div>
-                      </div>
-
-                      <ul className="space-y-4 mb-8">
-                        {exp.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-start text-slate-700 dark:text-slate-300 leading-relaxed font-light">
-                            <span className="text-indigo-500 dark:text-cyan-400 font-bold select-none mr-3 mt-0.5 opacity-60">
-                              ›
-                            </span>
-                            <span className="text-base text-slate-600 dark:text-slate-300">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Stack Pill Row */}
-                      {exp.stack && exp.stack.length > 0 && (
-                        <div className="flex flex-wrap gap-2 pt-6 border-t border-slate-200 dark:border-slate-800">
-                          {exp.stack.map((tech, i) => (
-                            <span 
-                              key={i} 
-                              className="text-xs tracking-wide px-3 py-1.5 rounded-md bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 group-hover:border-indigo-200 dark:group-hover:border-cyan-900 transition-colors"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Subtle background glow effect locked inside card */}
-                      <div className="absolute -right-20 -bottom-20 w-40 h-40 bg-indigo-500/5 dark:bg-cyan-400/5 blur-3xl rounded-full pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-                    </div>
-                  </motion.div>
-
-                </div>
-              );
-            })}
-          </div>
-
+      {/* Responsibilities */}
+      <div className="exp-responsibilities-section">
+        <p className="exp-section-label" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>Responsibilities</p>
+        <div className="exp-responsibilities-grid">
+          {exp.responsibilities.map((r, i) => (
+            <span key={i} className="exp-responsibility-item">
+              {r}
+            </span>
+          ))}
         </div>
+      </div>
+
+      {/* Bottom row: stack + duration */}
+      <div className="exp-bottom-row" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>
+        <div className="exp-stack-group" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal' }}>
+          {exp.stack.map((tech) => (
+            <StackTag
+              key={tech}
+              tech={tech}
+              tooltip={exp.stackTooltips?.[tech]}
+            />
+          ))}
+        </div>
+        <span className="exp-duration-stat">{exp.duration}</span>
+      </div>
+
+      {/* Full-width separator */}
+      <div className="exp-block-rule" />
+    </motion.div>
+  );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+export function Experience() {
+  const experiences = portfolioData.experience as unknown as ExperienceEntry[];
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
+
+  // One ref per company block (right panel)
+  const blockRefs = useRef<React.RefObject<HTMLDivElement | null>[]>(
+    experiences.map(() => ({ current: null }))
+  );
+
+  // Active index via IntersectionObserver
+  const activeIndex = useActiveSection(blockRefs.current);
+
+  // Smooth-scroll right panel to the clicked company
+  const scrollToCompany = (index: number) => {
+    const target = blockRefs.current[index]?.current;
+    if (!target || !rightPanelRef.current) return;
+    const panel = rightPanelRef.current;
+    const targetTop = target.offsetTop;
+    panel.scrollTo({ top: targetTop, behavior: 'smooth' });
+  };
+
+  // Section entrance
+  const sectionInView = useInView(sectionRef, { once: true, margin: '-120px' });
+
+  const activeExp = experiences[activeIndex];
+
+  return (
+    <section
+      id="experience"
+      ref={sectionRef}
+      className="exp-section"
+    >
+      {/* ── Section Header ── */}
+      <motion.div
+        className="exp-header"
+        initial={{ opacity: 0, y: 30 }}
+        animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
+        <span className="exp-eyebrow">03 / Experience</span>
+        <h2 className="exp-heading">Battles Fought.</h2>
+      </motion.div>
+
+      {/* ── Editorial Spread ── */}
+      <div className="exp-spread">
+
+        {/* LEFT PANEL — sticky */}
+        <motion.aside
+          className="exp-left-panel"
+          initial={{ opacity: 0, x: -60 }}
+          animate={sectionInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        >
+          {/* Animated company name */}
+          <AnimatePresence mode="wait">
+            <CompanyNameDisplay key={activeIndex} exp={activeExp} />
+          </AnimatePresence>
+
+          {/* Navigation index */}
+          <nav className="exp-index-nav" aria-label="Company navigation">
+            {experiences.map((exp, i) => (
+              <IndexItem
+                key={exp.company}
+                company={exp.company}
+                isActive={i === activeIndex}
+                onClick={() => scrollToCompany(i)}
+              />
+            ))}
+          </nav>
+        </motion.aside>
+
+        {/* THIN DIVIDER */}
+        <div className="exp-divider" aria-hidden="true" />
+
+        {/* RIGHT PANEL — scrollable */}
+        <motion.div
+          ref={rightPanelRef}
+          className="exp-right-panel"
+          initial={{ opacity: 0, y: 50 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+        >
+          {experiences.map((exp, i) => (
+            <CompanyBlock
+              key={exp.company}
+              exp={exp}
+              blockRef={blockRefs.current[i]}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
