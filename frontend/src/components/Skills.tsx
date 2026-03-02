@@ -595,15 +595,15 @@ export function Skills() {
               {/* Outer glow */}
               <div className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, rgba(99,102,241,0.05) 50%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0.05) 50%, transparent 70%)',
                   transform: 'scale(3)',
                   animation: 'pulse 4s ease-in-out infinite',
                 }} />
               {/* Core sphere */}
               <div className="w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center relative z-10"
                 style={{
-                  background: 'radial-gradient(circle at 35% 35%, #a5b4fc, #6366f1, #4338ca)',
-                  boxShadow: '0 0 50px rgba(99,102,241,0.45), 0 0 100px rgba(99,102,241,0.15)',
+                  background: 'radial-gradient(circle at 35% 35%, #fca5a5, #ef4444, #b91c1c)',
+                  boxShadow: '0 0 50px rgba(239, 68, 68, 0.45), 0 0 100px rgba(239, 68, 68, 0.15)',
                 }}>
                 <span className="text-white font-bold text-lg md:text-xl tracking-wider">AV</span>
               </div>
