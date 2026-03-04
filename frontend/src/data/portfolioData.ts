@@ -229,25 +229,25 @@ export const portfolioData = {
   ],
   education: [
     {
-      degree: "B.S. in Computer Science",
-      institution: "State University",
-      duration: "2015 - 2019",
-      grade: "3.8/4.0 CGPA",
+      degree: "B.E. in Electronics and Telecommunication",
+      institution: "Vivekanand Education Society's Institute of Technology",
+      duration: "2020 - 2024",
+      grade: "9.02/10 CGPA",
       highlights: [
-        "President of the Computer Science Society",
-        "Lead Organizer for State Hackathon 2018",
+        "Secured 1st place in State Level Hackathon 2022",
+        "Lead Organizer for State Hackathon 2020",
         "Published paper on distributed systems"
       ]
     },
     {
-      degree: "Full Stack Web Development Bootcamp",
-      institution: "Tech Academy",
-      duration: "2020",
-      grade: "Honors",
+      degree: "HSC",
+      institution: "New Horizon Public School",
+      duration: "2018 - 2020",
+      grade: "81.6%",
       highlights: [
-        "Built 5 full-stack applications",
-        "Mentored peers in React and Node.js",
-        "Won Best Capstone Project"
+        "Won 1st place in State Level Science Exhibition 2019",
+        "Secured 2nd place in DSO Cricket Tournament 2020",
+        "Organized TechFest 2019"
       ]
     }
   ],
