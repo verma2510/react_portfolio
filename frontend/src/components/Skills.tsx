@@ -3,10 +3,10 @@ import { portfolioData } from '../data/portfolioData';
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { RotateCcw, X } from 'lucide-react';
 import {
-  SiReact, SiTypescript, SiTailwindcss, SiFramer,
-  SiNodedotjs, SiPython, SiPostgresql, SiMongodb,
-  SiGit, SiDocker, SiFirebase, SiFigma,
-  SiCplusplus, SiStreamlit, SiOpenai,
+  SiReact, SiTypescript, SiTailwindcss, SiFramer, SiRedux,
+  SiNodedotjs, SiPython, SiPostgresql, SiMongodb, SiFastapi,
+  SiGit, SiDocker, SiFirebase, SiFigma, SiExpress, SiSocketdotio, SiDatabricks,
+  SiStreamlit, SiOpenai, SiDjango, SiVercel, SiNetlify, SiRender, SiRailway
 } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 
@@ -20,6 +20,16 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number; className?: 
   typescript: SiTypescript,
   tailwind: SiTailwindcss,
   framer: SiFramer,
+  redux: SiRedux,
+  express: SiExpress,
+  fastapi: SiFastapi,
+  django: SiDjango,
+  vercel: SiVercel,
+  netlify: SiNetlify,
+  render: SiRender,
+  railway: SiRailway,
+  socketdotio: SiSocketdotio,
+  dsa: SiDatabricks,
   node: SiNodedotjs,
   python: SiPython,
   postgresql: SiPostgresql,
@@ -29,7 +39,6 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number; className?: 
   aws: FaAws,
   firebase: SiFirebase,
   figma: SiFigma,
-  cpp: SiCplusplus,
   streamlit: SiStreamlit,
   openai: SiOpenai,
 };

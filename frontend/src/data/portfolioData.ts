@@ -15,7 +15,7 @@ export interface ExperienceEntry {
 
 export const portfolioData = {
   hero: {
-    name: "Aman V.",
+    name: "Aman Verma",
     tagline: "Every great product starts with a curious mind.",
     originStory: "From parsing my first basic logic flows to crafting full-stack, cinematic web experiences, my journey is driven by an unrelenting curiosity.", 
     resumeUrl: "/resume.pdf"
@@ -23,15 +23,15 @@ export const portfolioData = {
   about: {
     photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80",
     paragraphs: [
-      "I am a software engineer with a flair for the technical and the cinematic. I see code not just as logic, but as a medium for storytelling and human connection.",
-      "My origin story is rooted in a fascination with how things work under the hood, leading me to master the full stack.",
-      "When I'm not orchestrating seamless digital experiences, I'm experimenting with new architectural patterns or lost in the world of design."
+      "I'm a full-stack developer with a B.E. in Electronics & Telecom and a specialization in AI/ML. I build robust web applications across the MERN stack, Django, and FastAPI in both TypeScript and JavaScript.",
+      // "I thrive in fast-paced environments, collaborating across teams and delivering features with clean version control and efficient workflows. I bring both breadth across multiple frameworks and languages and depth, going beyond surface-level implementation to truly understand the systems I build.",
+      "I'm known for diagnosing complex bugs, implementing efficient data structures, and enhancing authorization workflows. I believe great software is where engineering discipline meets thoughtful craft."
     ],
     milestones: [
-      { year: "2019", text: "Wrote my first line of code" },
-      { year: "2021", text: "Started Frontend Developer role" },
-      { year: "2023", text: "Mastered full-stack architecture" },
-      { year: "Present", text: "Building cinematic experiences" }
+      { year: "2020", text: "Wrote my first line of code" },
+      { year: "2023", text: "Caught the React bug and built my first full-stack apps and never looked back" },
+      { year: "2024", text: "Graduated with a 9.02 CGPA, stacked certifications, and started turning ideas into real products" },
+      { year: "Present", text: "Shipping production-grade features daily optimizing systems, squashing complex bugs, and building experiences that scale." }
     ]
   },
   skills: {
@@ -43,10 +43,10 @@ export const portfolioData = {
         rotationSpeed: 60,
         rotationDirection: 1,
         skills: [
-          { name: "React", icon: "react", proficiency: 95, years: 4, note: "Primary framework, 6+ production apps" },
-          { name: "TypeScript", icon: "typescript", proficiency: 90, years: 3, note: "Used in all recent projects" },
-          { name: "Tailwind CSS", icon: "tailwind", proficiency: 85, years: 3, note: "Go-to styling solution" },
-          { name: "Framer Motion", icon: "framer", proficiency: 80, years: 2, note: "Animation-heavy UIs" }
+          { name: "React.js", icon: "react", proficiency: 90, years: 2, note: "Primary framework across all projects" },
+          { name: "TypeScript", icon: "typescript", proficiency: 85, years: 2, note: "Used in all recent production work" },
+          { name: "Tailwind CSS", icon: "tailwind", proficiency: 85, years: 2, note: "Go-to styling solution" },
+          { name: "Redux", icon: "redux", proficiency: 75, years: 1, note: "State management" },
         ]
       },
       {
@@ -56,10 +56,12 @@ export const portfolioData = {
         rotationSpeed: 80,
         rotationDirection: -1,
         skills: [
-          { name: "Node.js", icon: "node", proficiency: 85, years: 4, note: "REST & GraphQL APIs" },
-          { name: "Python", icon: "python", proficiency: 80, years: 3, note: "Scripting & ML pipelines" },
-          { name: "PostgreSQL", icon: "postgresql", proficiency: 75, years: 2, note: "Complex query design" },
-          { name: "MongoDB", icon: "mongodb", proficiency: 70, years: 2, note: "NoSQL at scale" }
+          { name: "Node.js", icon: "node", proficiency: 85, years: 2, note: "REST APIs & MERN stack" },
+          { name: "Express", icon: "express", proficiency: 85, years: 2, note: "Primary Node.js framework" },
+          { name: "Python", icon: "python", proficiency: 80, years: 2, note: "Scripting & backend services" },
+          { name: "FastAPI", icon: "fastapi", proficiency: 78, years: 1, note: "High-performance Python APIs" },
+          { name: "Django", icon: "django", proficiency: 75, years: 1, note: "REST Framework & ORM" },
+          { name: "MongoDB", icon: "mongodb", proficiency: 80, years: 2, note: "Primary NoSQL database" },
         ]
       },
       {
@@ -69,10 +71,10 @@ export const portfolioData = {
         rotationSpeed: 100,
         rotationDirection: 1,
         skills: [
-          { name: "Git", icon: "git", proficiency: 90, years: 5, note: "Advanced branching & workflows" },
-          { name: "Docker", icon: "docker", proficiency: 70, years: 2, note: "Containerized deployments" },
-          { name: "AWS", icon: "aws", proficiency: 65, years: 2, note: "EC2, S3, Lambda" },
-          { name: "Firebase", icon: "firebase", proficiency: 75, years: 3, note: "Auth, Firestore, Hosting" }
+          { name: "Git", icon: "git", proficiency: 90, years: 2, note: "Branching, collaboration & version control" },
+          { name: "Vercel", icon: "vercel", proficiency: 80, years: 2, note: "Frontend hosting & CI/CD" },
+          { name: "Render", icon: "render", proficiency: 75, years: 2, note: "Backend deployments" },
+          { name: "Railway", icon: "railway", proficiency: 72, years: 2, note: "Backend & database hosting" },
         ]
       },
       {
@@ -82,81 +84,80 @@ export const portfolioData = {
         rotationSpeed: 120,
         rotationDirection: -1,
         skills: [
-          { name: "Figma", icon: "figma", proficiency: 80, years: 3, note: "Design-to-code pipeline" },
-          { name: "C++", icon: "cpp", proficiency: 70, years: 4, note: "Competitive programming" },
-          { name: "Streamlit", icon: "streamlit", proficiency: 65, years: 1, note: "Rapid data app prototyping" },
-          { name: "Gen AI", icon: "openai", proficiency: 75, years: 1, note: "LLM integration & prompt eng." }
+          { name: "Socket.io", icon: "socketdotio", proficiency: 72, years: 1, note: "Real-time communication" },
+          { name: "DSA", icon: "dsa", proficiency: 75, years: 2, note: "Problem solving & optimization" },
         ]
       }
     ]
   },
   experience: [
     {
-      company: "Anthropic",
-      role: "Senior Software Engineer",
-      period: { start: "Jan 2022", end: "Mar 2024" },
-      descriptor: "AI safety research company building reliable, interpretable AI systems",
-      pullQuote: "Reduced inference latency by 60%, directly improving response quality for 2M+ daily active users",
+      company: "AI-TechTures Labs LLP",
+      role: "Software Development Engineer",
+      period: { start: "Jul 2025", end: "Present" },
+      descriptor: "Product studio building CRM systems, analytics dashboards, and e-commerce platforms",
+      pullQuote: "Improved search efficiency by up to 81% while shipping across CRM, analytics, and e-commerce products",
       achievements: [
-        "Architected a real-time data pipeline processing 500k events per day with sub-10ms p99",
-        "Led migration of monolithic frontend to micro-frontend architecture across 6 product teams",
-        "Mentored 4 junior engineers, 2 of whom were promoted to mid-level within a year"
+        "Improved search efficiency by up to 81% through optimized data structures and query design",
+        "Enhanced authorization workflows and significantly refined frontend performance and UI/UX",
+        "Diagnosed and resolved complex production bugs across full-stack MERN, Django, and FastAPI codebases"
       ],
-      responsibilities: ["System architecture", "Team mentorship", "API design", "Code reviews", "Incident response", "Roadmap planning"],
-      stack: ["React", "TypeScript", "Python", "AWS", "Redis", "GraphQL"],
+      responsibilities: ["Full-stack development", "Bug diagnosis", "UI/UX refinement", "API design", "Authorization workflows", "Performance optimization"],
+      stack: ["React.js", "Node.js", "MongoDB", "Python", "FastAPI", "Django", "TypeScript"],
       stackTooltips: {
-        "React": "Built all consumer-facing product surfaces",
-        "TypeScript": "Enforced strict typing across 200k+ line codebase",
-        "Python": "ML pipeline orchestration and data tooling",
-        "AWS": "Multi-region infra: ECS, Lambda, RDS, S3",
-        "Redis": "Session management and real-time pub/sub",
-        "GraphQL": "Unified API gateway across 12 microservices"
+        "React.js": "Primary frontend framework across all product surfaces",
+        "Node.js": "Backend services and REST API development",
+        "MongoDB": "NoSQL database for scalable data storage",
+        "Python": "Scripting, data pipelines, and ML integrations",
+        "FastAPI": "High-performance Python API services",
+        "Django": "Full-stack web framework with ORM",
+        "TypeScript": "Type-safe development across recent projects"
       },
-      duration: "26 months"
+      duration: "Present"
     },
     {
-      company: "Vercel",
-      role: "Software Engineer — DX",
-      period: { start: "Aug 2020", end: "Dec 2021" },
-      descriptor: "Cloud platform powering the modern web for 1M+ developers worldwide",
-      pullQuote: "Shipped the Analytics dashboard end-to-end in 6 weeks, now used by 400k projects monthly",
+      company: "Nextgen Infratech Solutions LLP",
+      role: "Full Stack Developer Intern",
+      period: { start: "Mar 2025", end: "Jun 2025" },
+      descriptor: "Infrastructure solutions company building responsive, high-performance web applications",
+      pullQuote: "Led creation of responsive MERN applications with media-responsive designs that improved user engagement",
       achievements: [
-        "Designed and shipped the Core Web Vitals analytics dashboard from zero to GA",
-        "Reduced CLI cold-start time by 45% through lazy-loading and compile-time tree shaking",
-        "Authored 12 open-source guides adopted as official developer documentation"
+        "Led development of high-performance, responsive applications using MERN stack and Tailwind CSS",
+        "Implemented media-responsive designs improving user engagement across devices",
+        "Collaborated on GitHub for efficient version control and seamless feature integration"
       ],
-      responsibilities: ["Developer experience", "Open source", "CLI tooling", "Documentation", "Performance audits", "SDK design"],
-      stack: ["Next.js", "TypeScript", "Go", "Node.js", "Turborepo"],
+      responsibilities: ["Full-stack development", "Responsive design", "Version control", "Feature integration", "UI implementation"],
+      stack: ["React.js", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
       stackTooltips: {
-        "Next.js": "Primary framework for all internal tooling surfaces",
-        "TypeScript": "Full type safety across SDK and CLI packages",
-        "Go": "High-performance proxy and edge runtime modules",
-        "Node.js": "Build system integrations and plugin APIs",
-        "Turborepo": "Monorepo task orchestration for 40+ packages"
+        "React.js": "Frontend development for all application surfaces",
+        "Node.js": "Backend runtime for server-side logic",
+        "Express": "REST API framework and middleware",
+        "MongoDB": "Database design and management",
+        "Tailwind CSS": "Responsive and utility-first styling"
       },
-      duration: "16 months"
+      duration: "4 months"
     },
     {
-      company: "Razorpay",
-      role: "Frontend Developer",
-      period: { start: "Jul 2019", end: "Jul 2020" },
-      descriptor: "India's leading payment gateway processing billions in annual transactions",
-      pullQuote: "Rebuilt the checkout flow UI, lifting conversion rates by 18% across 300k merchant storefronts",
+      company: "Accordo.ai",
+      role: "AI-driven Software Development Intern",
+      period: { start: "Aug 2024", end: "Jan 2025" },
+      descriptor: "AI startup focused on machine learning integration and generative AI product development",
+      pullQuote: "Built a local Generative AI model using Llama 3.2 1B with full-stack FastAPI & ReactJS integration",
       achievements: [
-        "Redesigned the checkout SDK with a pixel-perfect, accessible component library",
-        "Halved bundle size from 420kB to 210kB via aggressive code splitting and lazy loading",
-        "Implemented A/B testing infrastructure used by 5 product squads simultaneously"
+        "Built a Generative AI model using Llama 3.2 1B Instruct LLM on a custom dataset locally in PyCharm with full-stack integration via FastAPI and ReactJS",
+        "Applied UI/UX principles in Figma to design and implement user-friendly interfaces, enhancing overall user experience",
+        "Researched emerging technologies and contributed to ReactJS development, pushing all projects to GitHub"
       ],
-      responsibilities: ["UI component library", "A/B testing", "Accessibility", "Performance optimization", "Cross-browser QA"],
-      stack: ["React", "Vanilla JS", "SCSS", "Webpack", "Jest"],
+      responsibilities: ["Machine learning", "ReactJS development", "Generative AI", "UI/UX design", "Research", "Full-stack integration"],
+      stack: ["React.js", "FastAPI", "Python", "Figma", "Llama 3.2"],
       stackTooltips: {
-        "React": "Rebuilt merchant dashboard and checkout surfaces",
-        "Vanilla JS": "Lightweight SDK with zero framework dependencies",
-        "SCSS": "Design token system for white-label theming",
-        "Webpack": "Custom build pipeline with dynamic chunking",
-        "Jest": "Unit and snapshot testing for 95% coverage"
+        "React.js": "Frontend development and UI implementation",
+        "FastAPI": "Backend integration for AI model serving",
+        "Python": "ML model development and scripting",
+        "Figma": "UI/UX design and interface prototyping",
+        "Llama 3.2": "Local LLM used for generative AI on custom dataset"
       },
-      duration: "12 months"
+      duration: "6 months"
     }
   ],
   projects: [
