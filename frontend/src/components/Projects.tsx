@@ -14,7 +14,7 @@ function CSSArtScene({ shape }: { shape: { type: string; colors: string[] } }) {
   switch (shape.type) {
     case 'circles':
       return (
-        <div className="w-full h-full relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${c3}22, ${c1}11)` }}>
+        <div className="w-full h-full relative max-h-[500px] overflow-hidden" style={{ background: `linear-gradient(135deg, ${c3}22, ${c1}11)` }}>
           <div className="absolute w-32 h-32 rounded-full opacity-60 animate-pulse" style={{ background: `radial-gradient(circle, ${c1}, transparent)`, top: '15%', left: '10%' }} />
           <div className="absolute w-48 h-48 rounded-full opacity-40" style={{ background: `radial-gradient(circle, ${c2}, transparent)`, top: '30%', right: '5%', animation: 'pulse 3s ease-in-out infinite reverse' }} />
           <div className="absolute w-20 h-20 rounded-full opacity-50 animate-bounce" style={{ background: c1, bottom: '15%', left: '40%', animationDuration: '4s' }} />
@@ -172,7 +172,7 @@ function BrowserFrame({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       {/* Content */}
-      <div className="aspect-[16/10] bg-slate-50 dark:bg-slate-950">
+      <div className="aspect-[16/10] bg-slate-50 dark:bg-slate-950 max-h-[500px] w-full">
         {children}
       </div>
     </div>
