@@ -752,30 +752,8 @@
         display: none;
     }
 
-    /* Left panel becomes sticky horizontal tab bar */
+    /* Left panel becomes sticky horizontal tab bar (hidden on mobile) */
     .exp-left-panel {
-        position: sticky;
-        top: 4.5rem;
-        height: auto;
-        flex-direction: row;
-        align-items: center;
-        padding: 0.85rem 1.25rem;
-        gap: 0;
-        background: hsl(0, 0%, 99%);
-        border-bottom: 1px solid hsl(214, 32%, 91%);
-        z-index: 30;
-        overflow-x: auto;
-        overflow-y: visible;
-        scrollbar-width: none;
-        justify-content: flex-start;
-    }
-
-    .dark .exp-left-panel {
-        background: hsl(222, 47%, 7%);
-        border-bottom-color: hsl(217, 33%, 17%);
-    }
-
-    .exp-left-panel::-webkit-scrollbar {
         display: none;
     }
 

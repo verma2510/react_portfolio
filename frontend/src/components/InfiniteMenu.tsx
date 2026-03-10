@@ -1129,13 +1129,14 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
           select-none
           absolute
           font-black
-          [font-size:3rem] md:[font-size:4rem]
+          text-[3rem] md:text-[4rem]
           text-slate-900 dark:text-white
-          left-[1.6em]
-          top-1/2
+          w-full md:w-auto text-center md:text-left
+          left-1/2 md:left-[1.6em]
+          top-4 md:top-1/2
           transform
-          translate-x-[20%]
-          -translate-y-1/2
+          -translate-x-1/2 md:translate-x-[20%]
+          translate-y-0 md:-translate-y-1/2
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
@@ -1152,17 +1153,21 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
             className={`
           select-none
           absolute
-          max-w-[15ch]
+          w-full md:max-w-[15ch] text-center md:text-left
           text-[1.2rem] md:text-[1.5rem]
           text-slate-600 dark:text-slate-300
-          top-1/2
-          right-[1%]
+          
+          top-auto md:top-1/2
+          bottom-22 md:bottom-auto
+          left-1/2 md:left-auto
+          md:right-[1%]
+          
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
             isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2'
-              : 'opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2'
+              ? 'opacity-0 pointer-events-none duration-[100ms] -translate-x-1/2 md:translate-x-[-60%] translate-y-0 md:-translate-y-1/2'
+              : 'opacity-100 pointer-events-auto duration-[500ms] -translate-x-1/2 md:translate-x-[-90%] translate-y-0 md:-translate-y-1/2'
           }
         `}
           >
@@ -1189,7 +1194,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
           ${
             isMoving
               ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
-              : 'bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
+              : 'bottom-[0.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
           }
         `}
           >

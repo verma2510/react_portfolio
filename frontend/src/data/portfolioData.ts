@@ -302,36 +302,35 @@ export const portfolioData = {
   ],
   hobbies: [
     {
-      name: "Photography",
-      description: "Chasing the golden hour and mastering shadows.",
-      emoji: "📸"
-    },
-    {
-      name: "Analog Synths",
-      description: "Wiring up patches for generative soundscapes.",
-      emoji: "🎛️"
-    },
-    {
-      name: "Writing",
-      description: "Distilling complex concepts into essays.",
-      emoji: "✍️"
-    },
-    {
-      name: "Football",
+      title: "Football",
       description: "Playing weekend leagues with endless stamina.",
-      emoji: "⚽"
+      image: "https://picsum.photos/400/400?grayscale",
+      link: "https://google.com/"
     },
     {
-      name: "Coffee",
-      description: "Brewing the perfect pour-over every morning.",
-      emoji: "☕"
+      title: "Travelling",
+      description: "Exploring new places and cultures.",
+      image: "https://picsum.photos/500/500?grayscale",
+      link: "https://google.com/"
+    },
+    {
+      title: "Chess",
+      description: "Strategic battles on 64 squares.",
+      image: "https://picsum.photos/600/600?grayscale",
+      link: "https://google.com/"
+    },
+    {
+      title: "Photography",
+      description: "Chasing the golden hour and mastering shadows.",
+      image: "https://picsum.photos/700/700?grayscale",
+      link: "https://google.com/"
     }
   ],
   contact: {
     message: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
+    github: "https://github.com/verma2510",
+    linkedin: "https://linkedin.com/in/aman-verma-96802622b",
     twitter: "https://twitter.com/yourusername",
-    email: "letstalk@example.com"
+    email: "verma.aman1008@gmail.com"
   }
 };

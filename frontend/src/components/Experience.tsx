@@ -29,7 +29,7 @@ function useActiveSection(refs: React.RefObject<HTMLDivElement | null>[]) {
         ([entry]) => {
           if (entry.isIntersecting) setActiveIndex(i);
         },
-        { threshold: 0.45 }
+        { rootMargin: "-40% 0px -40% 0px" }
       );
       obs.observe(ref.current);
       observers.push(obs);
@@ -184,6 +184,20 @@ function CompanyBlock({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
     >
+
+      {/* Mobile-only Header */}
+      <div className="md:hidden flex flex-col gap-1 mb-6 border-b border-indigo-100 dark:border-slate-800 pb-5">
+        <h2 className="exp-company-name !text-[1.6rem] !mb-1">{exp.company}</h2>
+        <p className="exp-role-mono !text-[0.85rem]" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal', margin: 0 }}>{exp.role}</p>
+        <p className="exp-period-mono !text-[0.75rem]" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal', marginTop: '0.2rem' }}>
+          {exp.period.start} — {exp.period.end}
+        </p>
+        {exp.descriptor && (
+          <p className="exp-descriptor !text-[0.85rem]" style={{ fontFamily: '"Google Sans", sans-serif', fontStyle: 'normal', marginTop: '0.5rem' }}>
+            {exp.descriptor}
+          </p>
+        )}
+      </div>
 
       {/* Pull Quote */}
       {exp.pullQuote && (

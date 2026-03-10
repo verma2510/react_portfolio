@@ -1,32 +1,6 @@
 import { motion } from 'framer-motion';
 import InfiniteMenu from './InfiniteMenu'
-
-const items = [
-  {
-    image: 'https://picsum.photos/300/300?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 1',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/400/400?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 2',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/500/500?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 3',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/600/600?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 4',
-    description: 'This is pretty cool, right?'
-  }
-];
+import { portfolioData } from '../data/portfolioData';
 
 export function Hobbies() {
   return (
@@ -47,15 +21,15 @@ export function Hobbies() {
           <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white mb-6">
             Beyond the Code.
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light">
+          {/* <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light">
             The human behind the developer.
-          </p>
+          </p> */}
         </motion.div>
 
       </div>
 
       <div className="w-full relative h-[600px] md:h-[700px]">
-         <InfiniteMenu items={items} scale={0.8} />
+         <InfiniteMenu items={portfolioData.hobbies} scale={0.8} />
       </div>
     </section>
   )
