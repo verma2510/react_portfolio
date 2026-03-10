@@ -17,11 +17,11 @@ export const portfolioData = {
   hero: {
     name: "Aman Verma",
     tagline: "Every great product starts with a curious mind.",
-    originStory: "From parsing my first basic logic flows to crafting full-stack, cinematic web experiences, my journey is driven by an unrelenting curiosity.", 
+    originStory: "From parsing my first basic logic flows to crafting full-stack, cinematic web experiences, my journey is driven by an unrelenting curiosity.",
     resumeUrl: "/resume.pdf"
   },
   about: {
-    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80",
+    photoUrl: "/photo.jpg",
     paragraphs: [
       "I'm a full-stack developer with a B.E. in Electronics & Telecom and a specialization in AI/ML. I build robust web applications across the MERN stack, Django, and FastAPI in both TypeScript and JavaScript.",
       // "I thrive in fast-paced environments, collaborating across teams and delivering features with clean version control and efficient workflows. I bring both breadth across multiple frameworks and languages and depth, going beyond surface-level implementation to truly understand the systems I build.",
@@ -165,7 +165,7 @@ export const portfolioData = {
       title: "FloorMaster",
       role: "Full Stack",
       year: "2025",
-      description: ["CAD-based architectural rendering application with custom geometric algorithms for polygon generation, edge detection, and real-time wall drawing."," Features intelligent vertex snapping, fragment outline system with edge suppression, and an interactive editing toolkit with undo/redo functionality."],
+      description: ["CAD-based architectural rendering application with custom geometric algorithms for polygon generation, edge detection, and real-time wall drawing.", " Features intelligent vertex snapping, fragment outline system with edge suppression, and an interactive editing toolkit with undo/redo functionality."],
       stack: ["React", "TypeScript", "PixiJS"],
       category: "Web",
       featured: true,
@@ -273,14 +273,14 @@ export const portfolioData = {
   certifications: [
     {
       name: "JavaScript and React.js Bootcamp",
-      issuer: "DevTown and GDSC",
-      date: "Dec 2023",
-      link: "https://devtown.in/",
-      icon: "Code" 
+      issuer: "Google Developer Student Clubs",
+      date: "Jan 2023",
+      link: "https://www.cert.devtown.in/verify/1VNQpQ",
+      icon: "Code"
     },
     {
       name: "Software Engineer Intern",
-      issuer: "Hackerrank",
+      issuer: "HackerRank",
       date: "July 2024",
       link: "https://www.hackerrank.com/certificates/b98d8374419d",
       icon: "Code"
@@ -296,7 +296,7 @@ export const portfolioData = {
       name: "Python for Software Engineering",
       issuer: "Udemy",
       date: "July 2024",
-      link: "https://www.udemy.com/",
+      link: "https://www.udemy.com/certificate/UC-25c9d6fe-56d7-49c6-9dd2-9fdd81f0e3d1/",
       icon: "Code"
     }
   ],
@@ -304,26 +304,39 @@ export const portfolioData = {
     {
       title: "Football",
       description: "Playing weekend leagues with endless stamina.",
-      image: "https://picsum.photos/400/400?grayscale",
-      link: "https://google.com/"
+      image: "/hobbies/football.jpg",
+      link: "https://drive.google.com/file/d/18VqZMFz8nRQllgtcxMx1pXLhKWY39dx_/view"
     },
     {
       title: "Travelling",
       description: "Exploring new places and cultures.",
-      image: "https://picsum.photos/500/500?grayscale",
-      link: "https://google.com/"
+      image: "/hobbies/travelling.jpg",
+      link: "https://drive.google.com/file/d/1Ckl_ipDQy_qBaB4XblZHMvwadPxLRB2k/view"
     },
     {
       title: "Chess",
       description: "Strategic battles on 64 squares.",
-      image: "https://picsum.photos/600/600?grayscale",
-      link: "https://google.com/"
+      image: "/hobbies/chess.jpg",
+      link: "https://drive.google.com/file/d/17IVTC5qKygRrH7S0Lvb2-CCmUpBAdXUN/view",
+      zoom: 0.6
     },
     {
       title: "Photography",
       description: "Chasing the golden hour and mastering shadows.",
-      image: "https://picsum.photos/700/700?grayscale",
-      link: "https://google.com/"
+      image: "/hobbies/photography.jpg",
+      link: "https://drive.google.com/file/d/1TxABsa0tbo_HQnpZ7IegslJJXABC5dX0/view"
+    },
+    {
+      title: "Cricket",
+      description: "Playing various tournaments with my team.",
+      image: "/hobbies/cricket.jpg",
+      link: "https://drive.google.com/file/d/1yOUbQi5qxyVt109k_liqhS5qvMDskD8-/view"
+    },
+    {
+      title: "Swimming",
+      description: "Swimming for fitness and recreation.",
+      image: "/hobbies/swimming.jpg",
+      link: "https://drive.google.com/file/d/1mQDlmqb9wEw6z_qKDVaJv9dMNYC3guNF/view"
     }
   ],
   contact: {

@@ -68,19 +68,12 @@ void main() {
     vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
     vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
 
-    ivec2 texSize = textureSize(uTex, 0);
-    float imageAspect = float(texSize.x) / float(texSize.y);
-    float containerAspect = 1.0;
-    
-    float scale = max(imageAspect / containerAspect, 
-                     containerAspect / imageAspect);
-    
+    // Each atlas cell is already square-cropped (cover), so just
+    // remap the disc UVs straight into the correct cell.
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
-    st = (st - 0.5) * scale + 0.5;
-    
     st = clamp(st, 0.0, 1.0);
     st = st * cellSize + cellOffset;
-    
+
     outColor = texture(uTex, st);
     outColor.a *= vAlpha;
 }
@@ -627,6 +620,7 @@ interface MenuItem {
   link: string;
   title: string;
   description: string;
+  zoom?: number; // 1.0 = tight cover crop (default). < 1.0 zooms out to show more of the image.
 }
 
 type ActiveItemCallback = (index: number) => void;
@@ -833,34 +827,71 @@ class InfiniteGridMenu {
     const gl = this.gl;
     this.tex = createAndSetupTexture(gl, gl.LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
 
+    // Upload a 1x1 white pixel immediately so the texture is "complete"
+    // and won't render as black while images are loading asynchronously
+    gl.texImage2D(
+      gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0,
+      gl.RGBA, gl.UNSIGNED_BYTE,
+      new Uint8Array([255, 255, 255, 255])
+    );
+
     const itemCount = Math.max(1, this.items.length);
     this.atlasSize = Math.ceil(Math.sqrt(itemCount));
     const cellSize = 512;
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    canvas.width = this.atlasSize * cellSize;
-    canvas.height = this.atlasSize * cellSize;
+    const atlasCanvas = document.createElement('canvas');
+    const ctx = atlasCanvas.getContext('2d')!;
+    atlasCanvas.width = this.atlasSize * cellSize;
+    atlasCanvas.height = this.atlasSize * cellSize;
+
+    // Fill with a neutral gray so any unfilled cells aren't black
+    ctx.fillStyle = '#333';
+    ctx.fillRect(0, 0, atlasCanvas.width, atlasCanvas.height);
 
     Promise.all(
       this.items.map(
         item =>
-          new Promise<HTMLImageElement>(resolve => {
+          new Promise<HTMLImageElement | null>(resolve => {
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => resolve(img);
+            img.onerror = () => {
+              console.warn('Failed to load hobby image:', item.image);
+              resolve(null);
+            };
             img.src = item.image;
           })
       )
     ).then(images => {
       images.forEach((img, i) => {
-        const x = (i % this.atlasSize) * cellSize;
-        const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
+        if (!img) return;
+        const cellX = (i % this.atlasSize) * cellSize;
+        const cellY = Math.floor(i / this.atlasSize) * cellSize;
+
+        // Object-fit: cover with optional zoom-out — center-crop into the square cell.
+        // zoom < 1.0 reveals more of the image (useful for portrait shots).
+        const zoom = this.items[i].zoom ?? 1.0;
+        const imgAspect = img.naturalWidth / img.naturalHeight;
+        let srcX = 0, srcY = 0, srcW = img.naturalWidth, srcH = img.naturalHeight;
+        if (imgAspect > 1) {
+          // Wider than tall: base crop is a center square of side = naturalHeight
+          srcW = img.naturalHeight / zoom;
+          srcW = Math.min(srcW, img.naturalWidth);
+          srcH = srcW;
+          srcX = (img.naturalWidth - srcW) / 2;
+          srcY = (img.naturalHeight - srcH) / 2;
+        } else {
+          // Taller than wide: base crop is a center square of side = naturalWidth
+          srcH = img.naturalWidth / zoom;
+          srcH = Math.min(srcH, img.naturalHeight);
+          srcW = srcH;
+          srcX = (img.naturalWidth - srcW) / 2;
+          srcY = (img.naturalHeight - srcH) / 2;
+        }
+        ctx.drawImage(img, srcX, srcY, srcW, srcH, cellX, cellY, cellSize, cellSize);
       });
 
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
-      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlasCanvas);
     });
   }
 
@@ -1124,6 +1155,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
 
       {activeItem && (
         <>
+          {/* Title — pinned to left edge, never overlaps sphere */}
           <h2
             className={`
           select-none
@@ -1132,43 +1164,42 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
           text-[3rem] md:text-[4rem]
           text-slate-900 dark:text-white
           w-full md:w-auto text-center md:text-left
-          left-1/2 md:left-[1.6em]
+          left-1/2 md:left-[4.5%]
           top-4 md:top-1/2
           transform
-          -translate-x-1/2 md:translate-x-[20%]
+          -translate-x-1/2 md:translate-x-0
           translate-y-0 md:-translate-y-1/2
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms]'
-              : 'opacity-100 pointer-events-auto duration-[500ms]'
-          }
+          ${isMoving
+                ? 'opacity-0 pointer-events-none duration-[100ms]'
+                : 'opacity-100 pointer-events-auto duration-[500ms]'
+              }
         `}
           >
             {activeItem.title}
           </h2>
 
+          {/* Description — pinned to right edge, never overlaps sphere */}
           <p
             className={`
           select-none
           absolute
-          w-full md:max-w-[15ch] text-center md:text-left
+          w-full md:max-w-[14ch] text-center md:text-right
           text-[1.2rem] md:text-[1.5rem]
           text-slate-600 dark:text-slate-300
           
           top-auto md:top-1/2
           bottom-22 md:bottom-auto
           left-1/2 md:left-auto
-          md:right-[1%]
+          md:right-[10%]
           
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms] -translate-x-1/2 md:translate-x-[-60%] translate-y-0 md:-translate-y-1/2'
-              : 'opacity-100 pointer-events-auto duration-[500ms] -translate-x-1/2 md:translate-x-[-90%] translate-y-0 md:-translate-y-1/2'
-          }
+          ${isMoving
+                ? 'opacity-0 pointer-events-none duration-[100ms] -translate-x-1/2 md:translate-x-0 translate-y-0 md:-translate-y-1/2'
+                : 'opacity-100 pointer-events-auto duration-[500ms] -translate-x-1/2 md:translate-x-0 translate-y-0 md:-translate-y-1/2'
+              }
         `}
           >
             {activeItem.description}
@@ -1191,11 +1222,10 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
           cursor-pointer
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
-              : 'bottom-[0.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
-          }
+          ${isMoving
+                ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
+                : 'bottom-[0.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
+              }
         `}
           >
             <p className="select-none relative text-current top-[2px] text-[26px]">&#x2197;</p>
