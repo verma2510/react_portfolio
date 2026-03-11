@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeProvider';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
@@ -21,7 +21,7 @@ function App() {
           <CustomCursor />
           <Navbar />
           <ProgressIndicator />
-          
+
           <main className="pt-20">
             <Routes>
               <Route path="/" element={
@@ -37,15 +37,10 @@ function App() {
                   <Contact />
                 </>
               } />
-              <Route path="/about" element={<About />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
+              {/* Redirect any old sub-routes back to the single-page home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
-
-          {/* <Footer /> */}
         </div>
       </Router>
     </ThemeProvider>

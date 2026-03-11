@@ -58,7 +58,7 @@ export function Education() {
                   </div>
 
                   <div className="relative z-10 flex flex-col h-full">
-                    <h4 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2 pr-12 line-clamp-2">
+                    <h4 className="text-2xl md:text-2xl font-bold text-slate-900 dark:text-white mb-2 pr-12 line-clamp-2">
                       {edu.degree}
                     </h4>
                     <div className="space-y-2 mt-4">

@@ -254,9 +254,9 @@ export const portfolioData = {
       duration: "2020 - 2024",
       grade: "9.02/10 CGPA",
       highlights: [
-        "Secured 1st place in State Level Hackathon 2022",
-        "Lead Organizer for State Hackathon 2020",
-        "Published paper on distributed systems"
+        "Secured Runner-Up position in Football Tournament 2024",
+        "Cracked JSW Internship 2023",
+        "Implemented DNA Classification using ML"
       ]
     },
     {
@@ -266,7 +266,7 @@ export const portfolioData = {
       duration: "2018 - 2020",
       grade: "81.6%",
       highlights: [
-        "Won 1st place in State Level Science Exhibition 2019",
+        // "",
         "Secured 2nd place in DSO Cricket Tournament 2020",
         "Organized TechFest 2019"
       ]
@@ -278,9 +278,9 @@ export const portfolioData = {
       duration: "2017 - 2018",
       grade: "79%",
       highlights: [
-        "Won 1st place in State Level Science Exhibition 2019",
-        "Secured 2nd place in DSO Cricket Tournament 2020",
-        "Organized TechFest 2019"
+        "Won 1st place in Science Exhibition 2016",
+        "Secured 3rd place in Football Inter-House Tournament 2017",
+        "Secured 2nd place in Chess Tournament 2018"
       ]
     }
   ],
