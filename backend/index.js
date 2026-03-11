@@ -18,6 +18,11 @@ const mg = mailgun.client({
   key: process.env.MAILGUN_API_KEY,
 });
 
+// ✅ Health check endpoint — keeps Render backend awake (ping this every 5 mins)
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is awake');
+});
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
