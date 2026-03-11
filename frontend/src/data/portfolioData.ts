@@ -35,6 +35,38 @@ export const portfolioData = {
     ]
   },
   skills: {
+    dualStream: [
+      {
+        row: 1,
+        direction: "left" as const,
+        speed: 40,
+        skills: [
+          { name: "React.js", icon: "react", proficiency: 90 },
+          { name: "TypeScript", icon: "typescript", proficiency: 85 },
+          { name: "Tailwind CSS", icon: "tailwind", proficiency: 85 },
+          { name: "JavaScript", icon: "javascript", proficiency: 80 },
+          { name: "Redux", icon: "redux", proficiency: 75 },
+          { name: "Node.js", icon: "node", proficiency: 85 },
+          { name: "Express", icon: "express", proficiency: 85 },
+          { name: "Python", icon: "python", proficiency: 80 },
+        ]
+      },
+      {
+        row: 2,
+        direction: "right" as const,
+        speed: 30,
+        skills: [
+          { name: "Git", icon: "git", proficiency: 90 },
+          { name: "Vercel", icon: "vercel", proficiency: 80 },
+          { name: "Render", icon: "render", proficiency: 75 },
+          { name: "Socket.io", icon: "socketdotio", proficiency: 72 },
+          { name: "DSA", icon: "dsa", proficiency: 75 },
+          { name: "MongoDB", icon: "mongodb", proficiency: 80 },
+          { name: "FastAPI", icon: "fastapi", proficiency: 78 },
+          { name: "Django", icon: "django", proficiency: 75 },
+        ]
+      }
+    ],
     solarSystem: [
       {
         category: "Frontend",

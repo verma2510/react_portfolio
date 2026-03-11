@@ -24,7 +24,7 @@ export function ProgressIndicator() {
 
     const handleScroll = () => {
       let currentId = '/';
-      
+
       // Determine which section is currently active based on scroll position
       for (const section of sections) {
         const el = document.getElementById(section.hash);
@@ -36,7 +36,7 @@ export function ProgressIndicator() {
           }
         }
       }
-      
+
       setActiveSection(currentId);
     };
 
@@ -52,16 +52,15 @@ export function ProgressIndicator() {
         const isActive = activeSection === id;
         return (
           <div key={id} className="flex items-center gap-3 group relative pointer-events-auto">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 10 }}
-              className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-300 ${
-                isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 group-hover:opacity-100 group-hover:text-slate-400'
-              }`}
+              className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-300 ${isActive ? 'text-indigo-600 dark:text-cyan-400' : 'text-slate-500 group-hover:opacity-100 group-hover:text-slate-400'
+                }`}
             >
               {label}
             </motion.span>
-            <Link 
+            <Link
               to={id}
               onClick={(e) => {
                 if (location.pathname === '/') {
@@ -72,11 +71,10 @@ export function ProgressIndicator() {
               className="relative flex items-center justify-center w-6 h-6 outline-none"
               aria-label={`Go to ${label}`}
             >
-               <motion.div
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  isActive ? 'bg-indigo-600 dark:bg-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.8)] scale-150' : 'bg-slate-400/50 group-hover:bg-slate-500'
-                }`}
-               />
+              <motion.div
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? 'bg-indigo-600 dark:bg-cyan-400 dark:shadow-[0_0_12px_rgba(34,211,238,0.8)] shadow-[0_0_12px_rgba(99,102,241,0.8)] scale-150' : 'bg-slate-400/50 group-hover:bg-slate-500'
+                  }`}
+              />
             </Link>
           </div>
         );

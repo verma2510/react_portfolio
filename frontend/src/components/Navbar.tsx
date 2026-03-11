@@ -5,15 +5,15 @@ import { useTheme } from './ThemeProvider';
 import { portfolioData } from '../data/portfolioData';
 
 const navLinks = [
-  { name: 'Home',           href: '#home' },
-  { name: 'About',          href: '#about' },
-  { name: 'Skills',         href: '#skills' },
-  { name: 'Experience',     href: '#experience' },
-  { name: 'Projects',       href: '#projects' },
-  { name: 'Education',      href: '#education' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
   { name: 'Certifications', href: '#certifications' },
-  { name: 'Hobbies',        href: '#hobbies' },
-  { name: 'Contact',        href: '#contact' },
+  { name: 'Hobbies', href: '#hobbies' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 // Section IDs in DOM order — must match the `id` attributes on each <section>
@@ -56,20 +56,18 @@ export function Navbar() {
 
   const linkClass = (id: string) => {
     const isActive = activeSection === id;
-    return `px-3 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-      isActive
-        ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
-        : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-    }`;
+    return `px-3 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive
+        ? 'bg-indigo-50 dark:bg-cyan-400/10 text-indigo-600 dark:text-cyan-400'
+        : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+      }`;
   };
 
   const mobileLinkClass = (id: string) => {
     const isActive = activeSection === id;
-    return `block px-4 py-3 rounded-xl text-sm font-semibold mb-1 transition-all duration-200 ${
-      isActive
-        ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
-        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
-    }`;
+    return `block px-4 py-3 rounded-xl text-sm font-semibold mb-1 transition-all duration-200 ${isActive
+        ? 'bg-indigo-50 dark:bg-cyan-400/10 text-indigo-600 dark:text-cyan-400'
+        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-cyan-400'
+      }`;
   };
 
   return (
@@ -135,7 +133,7 @@ export function Navbar() {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 p-2"
+              className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-cyan-400 p-2"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
