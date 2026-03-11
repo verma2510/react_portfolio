@@ -248,8 +248,9 @@ export const portfolioData = {
   ],
   education: [
     {
-      degree: "B.E. in Electronics and Telecommunication",
+      degree: "B.E. in Electronics and Telecom. with Honors in AIML",
       institution: "Vivekanand Education Society's Institute of Technology",
+      location: "Chembur, Mumbai",
       duration: "2020 - 2024",
       grade: "9.02/10 CGPA",
       highlights: [
@@ -261,8 +262,21 @@ export const portfolioData = {
     {
       degree: "HSC",
       institution: "New Horizon Public School",
+      location: "Panvel, Navi Mumbai",
       duration: "2018 - 2020",
       grade: "81.6%",
+      highlights: [
+        "Won 1st place in State Level Science Exhibition 2019",
+        "Secured 2nd place in DSO Cricket Tournament 2020",
+        "Organized TechFest 2019"
+      ]
+    },
+    {
+      degree: "SSC",
+      institution: "Shantiniketan Public School",
+      location: "Panvel, Navi Mumbai",
+      duration: "2017 - 2018",
+      grade: "79%",
       highlights: [
         "Won 1st place in State Level Science Exhibition 2019",
         "Secured 2nd place in DSO Cricket Tournament 2020",

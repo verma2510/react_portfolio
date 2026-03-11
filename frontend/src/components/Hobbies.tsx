@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 
 export function Hobbies() {
   return (
-    <section id="hobbies" className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
+    <section id="hobbies" className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mb-16 md:mb-24">
         
         {/* Entrance Heading */}
@@ -15,7 +15,7 @@ export function Hobbies() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center"
         >
-          <span className="text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             07 / Beyond
           </span>
           <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white mb-6">

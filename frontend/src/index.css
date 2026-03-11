@@ -262,8 +262,8 @@
 }
 
 .dark .exp-section {
-    background: rgb(15 23 42 / 0.3);
-    /* slate-900/30 — matches Contact & Skills dark */
+    background: rgb(2 6 23);
+    /* slate-950 */
 }
 
 
@@ -832,3 +832,4 @@
         align-items: flex-start;
     }
 }
+

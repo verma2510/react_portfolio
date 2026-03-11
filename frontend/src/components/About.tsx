@@ -15,7 +15,7 @@ export function About() {
   const imgY = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
-    <section id="about" ref={containerRef} className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden">
+    <section id="about" ref={containerRef} className="py-24 md:py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Entrance Heading */}
@@ -26,7 +26,7 @@ export function About() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 md:mb-24"
         >
-          <span className="text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             01 / About
           </span>
           <h2 className="text-5xl md:text-7xl font-semibold text-slate-900 dark:text-white">

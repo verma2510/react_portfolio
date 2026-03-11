@@ -287,7 +287,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="exp-section"
+      className="exp-section dark:bg-slate-950"
     >
       {/* ── Section Header ── */}
       <motion.div
@@ -296,7 +296,7 @@ export function Experience() {
         animate={sectionInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <span className="exp-eyebrow">03 / Experience</span>
+        <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">03 / Experience</span>
         <h2 className="exp-heading">Battles Fought.</h2>
       </motion.div>
 

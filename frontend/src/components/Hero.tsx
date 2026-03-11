@@ -123,14 +123,14 @@ export function Hero() {
               className="text-6xl sm:text-7xl md:text-9xl font-semibold text-slate-900 dark:text-white tracking-tight"
             >
               {portfolioData.hero.name}
-              <span className="text-cyan-600 dark:text-cyan-400">.</span>
+              <span className="text-indigo-600 dark:text-cyan-400">.</span>
             </motion.h1>
             {/* Elegant horizontal accent line */}
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 1.2, delay: 1, ease: "circOut" }}
-              className="absolute -bottom-2 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/60 dark:via-cyan-400/80 to-transparent origin-center"
+              className="absolute -bottom-2 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-indigo-600/60 dark:via-cyan-400/80 to-transparent origin-center"
             />
           </motion.div>
 
@@ -145,10 +145,10 @@ export function Hero() {
           <motion.div variants={itemVariants}>
             <Link
               to="/about"
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-400/50 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-400/50 dark:border-cyan-500/30 text-indigo-700 dark:text-cyan-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
             >
               {/* Fill effect on hover */}
-              <div className="absolute inset-0 bg-indigo-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
+              <div className="absolute inset-0 bg-indigo-600 dark:bg-cyan-400 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
 
               <span className="relative z-10 text-sm tracking-widest uppercase font-medium">
                 Begin the Journey

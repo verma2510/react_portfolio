@@ -287,7 +287,7 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-24 md:py-32 relative overflow-hidden bg-slate-50 dark:bg-slate-900/50"
+      className="py-24 md:py-32 relative overflow-hidden bg-slate-50 dark:bg-slate-950"
       tabIndex={-1}
     >
       {/* Dot-grid background texture */}

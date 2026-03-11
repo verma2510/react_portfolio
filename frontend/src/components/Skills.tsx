@@ -534,7 +534,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-32 md:py-40 relative overflow-hidden bg-slate-50 dark:bg-slate-900/50"
+      className="py-32 md:py-40 relative overflow-hidden bg-slate-50 dark:bg-slate-950"
     >
       {/* Star field — only visible in dark */}
       <div className="absolute inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-500"
@@ -562,7 +562,7 @@ export function Skills() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12 md:mb-6"
         >
-          <span className="text-sm tracking-widest text-indigo-600 dark:text-indigo-400 uppercase mb-4 block">
+          <span className="text-sm tracking-widest text-indigo-600 dark:text-cyan-400 uppercase mb-4 block">
             02 / Skills
           </span>
           <motion.h2
