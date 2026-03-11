@@ -360,7 +360,7 @@ export function Skills() {
 
       {/* ═══════ Marquee Rows — full viewport width ═══════ */}
       <div className="flex flex-col gap-2 md:gap-3">
-        {streamData.map((stream, i) => (
+        {streamData.map((stream) => (
           <MarqueeRow
             key={stream.row}
             stream={stream as StreamRow}
