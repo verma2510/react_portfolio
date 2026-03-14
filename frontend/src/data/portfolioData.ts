@@ -18,7 +18,7 @@ export const portfolioData = {
     name: "Aman Verma",
     tagline: "Every great product starts with a curious mind.",
     originStory: "From parsing my first basic logic flows to crafting full-stack, cinematic web experiences, my journey is driven by an unrelenting curiosity.",
-    resumeUrl: "/resume.pdf"
+    resumeUrl: "/AmanVerma.pdf"
   },
   about: {
     photoUrl: "/photo.jpg",

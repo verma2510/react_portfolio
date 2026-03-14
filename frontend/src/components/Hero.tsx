@@ -145,6 +145,10 @@ export function Hero() {
           <motion.div variants={itemVariants}>
             <Link
               to="/about"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
               className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-indigo-400/50 dark:border-cyan-500/30 text-indigo-700 dark:text-cyan-400 hover:text-white overflow-hidden rounded-full transition-all duration-500"
             >
               {/* Fill effect on hover */}
