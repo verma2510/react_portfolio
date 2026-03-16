@@ -208,17 +208,17 @@ export const portfolioData = {
       accentShape: { type: "circles", colors: ["#6366f1", "#818cf8", "#c7d2fe"] }
     },
     {
-      title: "EduBase",
-      role: "Full Stack",
+      title: "VizIntel",
+      role: "AI-Powered MERN-Stack",
       year: "2024",
       description: "University data management platform with multi-step forms capturing hierarchical university, campus, and course data. Features Django ORM with cascading updates, bulk import/export (Excel, CSV), and an administrative dashboard with quality monitoring for 1000+ educational institutions.",
-      stack: ["React", "Django", "Python", "PostgreSQL"],
-      category: "Web",
+      stack: ["React", "Nodejs", "MongoDB", "LLM", "Render", "Vercel"],
+      category: "Web/Mobile-Responsive",
       featured: true,
-      liveLink: "",
-      githubLink: "",
+      liveLink: "https://viz-intel-service.vercel.app/",
+      githubLink: "https://github.com/verma2510/VizIntel",
       imageUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?fit=crop&w=800&q=80",
-      impact: "1000+ institutions",
+      impact: "LLM integration",
       accentShape: { type: "circles", colors: ["#06b6d4", "#67e8f9", "#cffafe"] }
     },
     {
