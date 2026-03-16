@@ -430,9 +430,13 @@ export function Projects() {
                     <h5 className="text-xs tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-3 font-semibold">
                       Problem → Solution
                     </h5>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-light text-[15px]">
-                      {activeProject.description}
-                    </p>
+                    <ul className="text-slate-600 dark:text-slate-300 leading-relaxed font-light text-[15px] list-disc pl-5 space-y-2">
+                      {Array.isArray(activeProject.description)
+                        ? activeProject.description.map((point, idx) => (
+                            <li key={idx}>{point}</li>
+                          ))
+                        : <li>{activeProject.description}</li>}
+                    </ul>
                   </div>
                   {/* Right: tech stack graph */}
                   <div>
@@ -522,9 +526,13 @@ export function Projects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-light text-sm">
-                  {project.description}
-                </p>
+                <ul className="text-slate-600 dark:text-slate-300 leading-relaxed font-light text-sm list-disc pl-5 space-y-2">
+                  {Array.isArray(project.description)
+                    ? project.description.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))
+                    : <li>{project.description}</li>}
+                </ul>
 
                 {/* Stack pills */}
                 <div className="flex flex-wrap gap-1.5">

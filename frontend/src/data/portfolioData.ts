@@ -197,7 +197,10 @@ export const portfolioData = {
       title: "FloorMaster",
       role: "Full Stack",
       year: "2025",
-      description: ["CAD-based architectural rendering application with custom geometric algorithms for polygon generation, edge detection, and real-time wall drawing.", " Features intelligent vertex snapping, fragment outline system with edge suppression, and an interactive editing toolkit with undo/redo functionality."],
+      description: [
+        "CAD-based architectural rendering application with custom geometric algorithms for polygon generation, edge detection, and real-time wall drawing.",
+        "Features intelligent vertex snapping, fragment outline system with edge suppression, and an interactive editing toolkit with undo/redo functionality."
+      ],
       stack: ["React", "TypeScript", "PixiJS"],
       category: "Web",
       featured: true,
@@ -210,8 +213,12 @@ export const portfolioData = {
     {
       title: "VizIntel",
       role: "AI-Powered MERN-Stack",
-      year: "2024",
-      description: "University data management platform with multi-step forms capturing hierarchical university, campus, and course data. Features Django ORM with cascading updates, bulk import/export (Excel, CSV), and an administrative dashboard with quality monitoring for 1000+ educational institutions.",
+      year: "2026",
+      description: [
+        "Developed a full-stack MERN analytics platform that processes dynamic Excel data.",
+        "Performs automated KPI detection, chart generation, and anomaly analysis.",
+        "Features AI-driven insights with an interactive dashboard and secure authentication."
+      ],
       stack: ["React", "Nodejs", "MongoDB", "LLM", "Render", "Vercel"],
       category: "Web/Mobile-Responsive",
       featured: true,
@@ -224,8 +231,12 @@ export const portfolioData = {
     {
       title: "AdmitHub",
       role: "Full Stack",
-      year: "2024",
-      description: "Student counseling platform with hierarchical user management across Admins, Counselors, and Students. Includes JWT authentication, community forum with peer discussions and moderation, appointment scheduling, application tracking, and a university catalog with 500+ institutions.",
+      year: "2025",
+      description: [
+        "Student counseling platform with hierarchical user management across Admins, Counselors, and Students.",
+        "Includes JWT authentication, community forum with peer discussions and moderation.",
+        "Features appointment scheduling, application tracking, and a university catalog with 500+ institutions."
+      ],
       stack: ["React", "Node.js", "Express", "MongoDB"],
       category: "Web",
       featured: false,
@@ -239,7 +250,11 @@ export const portfolioData = {
       title: "Discover Dish",
       role: "Frontend",
       year: "2024",
-      description: "Recipe finder application integrating a public API to fetch and display recipes. Features recipe search, favorites management on a dedicated page, and Redux state management for seamless addition and removal of saved recipes.",
+      description: [
+        "Recipe finder application integrating a public API to fetch and display recipes.",
+        "Features recipe search and favorites management on a dedicated page.",
+        "Includes Redux state management for seamless addition and removal of saved recipes."
+      ],
       stack: ["React", "Redux"],
       category: "Web",
       featured: false,
@@ -253,7 +268,11 @@ export const portfolioData = {
       title: "Finance Dashboard",
       role: "Frontend",
       year: "2024",
-      description: "Interactive data-driven frontend application for banking analytics. Features dynamic modules presenting key financial metrics, reusable components like Navbar, Chart, and Sidebar, and React Router for seamless navigation across sections.",
+      description: [
+        "Interactive data-driven frontend application for banking analytics.",
+        "Features dynamic modules presenting key financial metrics.",
+        "Built with reusable components like Navbar, Chart, and Sidebar, and React Router for seamless navigation across sections."
+      ],
       stack: ["React", "React Router"],
       category: "Web",
       featured: false,
@@ -266,8 +285,12 @@ export const portfolioData = {
     {
       title: "CogniqEdge",
       role: "Full Stack",
-      year: "2024",
-      description: "Responsive corporate single-page app with animated service cards and a clean mobile-friendly layout. Features a validated contact form integrated with Nodemailer via a Node.js/Express backend, with frontend deployed on Vercel and backend on Railway.",
+      year: "2025",
+      description: [
+        "Responsive corporate single-page app with animated service cards and a clean mobile-friendly layout.",
+        "Features a validated contact form integrated with Nodemailer via a Node.js/Express backend.",
+        "Frontend deployed on Vercel and backend on Railway."
+      ],
       stack: ["React", "Tailwind CSS", "Node.js", "Express", "Nodemailer"],
       category: "Web",
       featured: false,
