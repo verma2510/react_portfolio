@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { LazyMotion, MotionConfig, domAnimation } from 'framer-motion';
+import './index.css';
+import App from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    {/* LazyMotion + `m` keeps the animation runtime small; reducedMotion honors OS settings */}
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        <App />
+      </MotionConfig>
+    </LazyMotion>
   </StrictMode>,
-)
+);

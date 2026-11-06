@@ -1,50 +1,66 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider } from './components/ThemeProvider';
-import { CustomCursor } from './components/CustomCursor';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Experience } from './components/Experience';
-import { Projects } from './components/Projects';
-import { Education } from './components/Education';
-import { Certifications } from './components/Certifications';
-import { Hobbies } from './components/Hobbies';
-import { Contact } from './components/Contact';
-import { ProgressIndicator } from './components/ProgressIndicator';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence, m } from 'framer-motion';
+import { SiteShell } from './components/layout/SiteShell';
+import { ActiveSectionProvider } from './providers/ActiveSectionProvider';
+import { CommandProvider } from './providers/CommandProvider';
+import { ThemeProvider } from './providers/ThemeProvider';
+import HomePage from './pages/HomePage';
 
-function App() {
+// Case studies are a secondary route — split them out of the initial bundle.
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
+
+function Page({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider>
-      <Router>
-        <div className="min-h-screen text-slate-900 bg-slate-50 dark:bg-slate-950 dark:text-slate-100 selection:bg-indigo-500/30">
-          <CustomCursor />
-          <Navbar />
-          <ProgressIndicator />
-
-          <main className="pt-20">
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <Hero />
-                  <About />
-                  <Skills />
-                  <Experience />
-                  <Projects />
-                  <Education />
-                  <Certifications />
-                  <Hobbies />
-                  <Contact />
-                </>
-              } />
-              {/* Redirect any old sub-routes back to the single-page home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </ThemeProvider>
+    <m.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </m.div>
   );
 }
 
-export default App;
+function AnimatedRoutes() {
+  const location = useLocation();
+  // Key by "page", not full URL, so hash changes on home don't remount it
+  const pageKey = location.pathname.startsWith('/work/') ? location.pathname : '/';
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={pageKey}>
+        <Route path="/" element={<Page><HomePage /></Page>} />
+        <Route
+          path="/work/:slug"
+          element={
+            <Page>
+              <Suspense fallback={<div className="min-h-dvh" />}>
+                <CaseStudyPage />
+              </Suspense>
+            </Page>
+          }
+        />
+        {/* Unknown routes fall back to the home page (preserves previous behaviour) */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <CommandProvider>
+          <ActiveSectionProvider>
+            <SiteShell>
+              <AnimatedRoutes />
+            </SiteShell>
+          </ActiveSectionProvider>
+        </CommandProvider>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+}

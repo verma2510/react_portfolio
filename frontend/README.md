@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# Aman Verma — Portfolio (frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion (LazyMotion) · React Router 7.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Dev server with HMR |
+| `npm run build` | Type-check + production build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | ESLint |
+| `npm run optimize:images` | Regenerate `.webp` derivatives of `public/photo.jpg` and `public/hobbies/*.jpg` (originals untouched) |
 
-## React Compiler
+`VITE_BACKEND_URL` (in `.env`) must point at the Express backend; the contact form posts to `${VITE_BACKEND_URL}/api/contact`.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Editing content
 
-## Expanding the ESLint configuration
+All content lives in **`src/data/portfolioData.ts`** — no copy is hard-coded in components.
+Derived values (career timeline, years of experience, skill → project evidence, architecture layers) are computed in `src/lib/content.ts`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Projects support two optional fields that render on the case-study page (`/work/:slug`) only when filled in:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```ts
+contributions?: string[];                              // "Key engineering contributions"
+challenges?: { problem: string; solution: string }[];  // "Challenges & solutions"
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The **system map** on each project is generated from its `stack` array. To place a new technology in the right layer (client / server / data / intelligence / delivery), add it to `LAYER_OF` in `src/lib/content.ts`; brand icons are mapped in `src/components/ui/TechIcon.tsx`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+  data/portfolioData.ts      content (typed)
+  lib/                       derived selectors, API client, platform helpers
+  hooks/                     active section, section navigation, contact form, document meta
+  providers/                 theme, command palette, active section
+  components/
+    layout/                  SiteShell, SideRail (desktop), TopBar (mobile), CommandPalette, Footer
+    projects/                SystemMap, FeaturedProject, ProjectLedger, ProjectSpec, ProjectLinks
+    experience/              CareerTimeline, RoleEntry
+    ui/                      Button, Chip, Meter, Reveal, SectionHeader, TechIcon
+  sections/                  Hero, Work, Experience, Stack, Profile, Credentials, OffClock, Contact
+  pages/                     HomePage, CaseStudyPage (lazy-loaded)
+```
+
+## Routing & hosting
+
+- `/` — single-page narrative; `/#work`, `/#contact`, etc. deep-link to sections.
+- `/work/:slug` — project case studies. Unknown routes redirect to `/`.
+- Deep links need an SPA fallback: `vercel.json` (Vercel) and `public/_redirects` (Netlify) are included.

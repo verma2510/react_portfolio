@@ -1,15 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>aman's portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Aman Verma — Software Development Engineer</title>
+    <meta name="description" content="Aman Verma is a Software Development Engineer building full-stack products with React, TypeScript, Node.js, Django and FastAPI. Selected work, experience, and contact." />
+    <meta name="author" content="Aman Verma" />
+    <meta name="theme-color" content="#0a0a0b" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Aman Verma — Software Development Engineer" />
+    <meta property="og:description" content="Full-stack engineer shipping production features across React, Node.js, Django and FastAPI." />
+    <meta property="og:image" content="/photo.webp" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Aman Verma — Software Development Engineer" />
+    <meta name="twitter:description" content="Full-stack engineer shipping production features across React, Node.js, Django and FastAPI." />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark';
+          var c = document.documentElement.classList;
+          c.remove('light', 'dark');
+          c.add(t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aman Verma",
+        "jobTitle": "Software Development Engineer",
+        "worksFor": { "@type": "Organization", "name": "AI-TechTures Labs LLP" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Vivekanand Education Society's Institute of Technology" },
+        "email": "mailto:verma.aman1008@gmail.com",
+        "sameAs": ["https://github.com/verma2510", "https://linkedin.com/in/aman-verma-96802622b"]
+      }
+    </script>
   </head>
   <body>
+    <noscript>Aman Verma — Software Development Engineer. Enable JavaScript to view this portfolio.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

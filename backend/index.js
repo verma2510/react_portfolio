@@ -23,11 +23,20 @@ app.get('/health', (req, res) => {
   res.status(200).send('Server is awake');
 });
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const clean = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+
 app.post('/api/contact', async (req, res) => {
-  const { name, email, message } = req.body;
+  // Strip line breaks from single-line fields (used in the subject / reply-to headers)
+  const name = clean(req.body?.name, 120).replace(/[\r\n]+/g, ' ');
+  const email = clean(req.body?.email, 200).replace(/[\r\n]+/g, '');
+  const message = clean(req.body?.message, 5000);
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required.' });
+  }
+  if (!EMAIL_RE.test(email)) {
+    return res.status(400).json({ error: 'Please provide a valid email address.' });
   }
 
   try {
