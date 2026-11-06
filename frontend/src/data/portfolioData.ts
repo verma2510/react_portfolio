@@ -113,8 +113,9 @@ export const portfolioData = {
         { name: "React.js", icon: "react", proficiency: 90, years: 2, note: "Primary framework across all projects" },
         { name: "TypeScript", icon: "typescript", proficiency: 85, years: 2, note: "Used in all recent production work" },
         { name: "Tailwind CSS", icon: "tailwind", proficiency: 85, years: 2, note: "Go-to styling solution" },
-        { name: "JavaScript", icon: "javascript", proficiency: 80 },
-        { name: "Redux", icon: "redux", proficiency: 75, years: 1, note: "State management" },
+        { name: "JavaScript", icon: "javascript", proficiency: 95, years: 3, note: "Programming language primarily for Web Development"},
+        { name: "Redux", icon: "redux", proficiency: 75, years: 2, note: "State management" },
+        { name: "Jest", icon: "jest", proficiency: 75, years: 1, note: "Testing framework for JavaScript" },
       ]
     },
     {
@@ -122,26 +123,32 @@ export const portfolioData = {
       skills: [
         { name: "Node.js", icon: "node", proficiency: 85, years: 2, note: "REST APIs & MERN stack" },
         { name: "Express", icon: "express", proficiency: 85, years: 2, note: "Primary Node.js framework" },
-        { name: "Python", icon: "python", proficiency: 80, years: 2, note: "Scripting & backend services" },
-        { name: "FastAPI", icon: "fastapi", proficiency: 78, years: 1, note: "High-performance Python APIs" },
-        { name: "Django", icon: "django", proficiency: 75, years: 1, note: "REST Framework & ORM" },
+        { name: "Python", icon: "python", proficiency: 85, years: 2, note: "Scripting & backend services" },
+        { name: "FastAPI", icon: "fastapi", proficiency: 80, years: 1, note: "High-performance Python APIs" },
+        { name: "Django", icon: "django", proficiency: 70, years: 1, note: "REST Framework & ORM" },
         { name: "MongoDB", icon: "mongodb", proficiency: 80, years: 2, note: "Primary NoSQL database" },
+        { name: "PostgreSQL", icon: "postgresql", proficiency: 80, years: 1, note: "Primary SQL database" },
+        { name: "GraphQL", icon: "graphql", proficiency: 70, years: 1, note: "Open‑source query language for APIs" },
       ]
     },
     {
-      category: "Tools & DevOps",
+      category: "Cloud & DevOps",
       skills: [
+        { name: "AWS", icon: "aws", proficiency: 80, years: 1, note: "IAM, EC2, Lambda, API Gateway, CloudWatch, S3" },
+        { name: "Docker", icon: "docker", proficiency: 85, years: 2, note: "Software containerization platform" },
         { name: "Git", icon: "git", proficiency: 90, years: 2, note: "Branching, collaboration & version control" },
         { name: "Vercel", icon: "vercel", proficiency: 80, years: 2, note: "Frontend hosting & CI/CD" },
         { name: "Render", icon: "render", proficiency: 75, years: 2, note: "Backend deployments" },
-        { name: "Railway", icon: "railway", proficiency: 72, years: 2, note: "Backend & database hosting" },
       ]
     },
     {
-      category: "Others",
+      category: "Tools and Concepts",
       skills: [
-        { name: "Socket.io", icon: "socketdotio", proficiency: 72, years: 1, note: "Real-time communication" },
-        { name: "DSA", icon: "dsa", proficiency: 75, years: 2, note: "Problem solving & optimization" },
+        { name: "DSA", icon: "dsa", proficiency: 85, years: 2, note: "Problem solving & optimization" },
+        { name: "RAG", icon: "rag", proficiency: 75, years: 1, note: "Retrieval-Augmented Generation" },
+        { name: "Kafka", icon: "kafka", proficiency: 72, years: 1, note: "Streaming data platform" },
+        { name: "Socket.io", icon: "socketdotio", proficiency: 85, years: 2, note: "Real-time communication" },
+        { name: "n8n", icon: "n8n", proficiency: 85, years: 1, note: "Workflow automation platform" },
       ]
     }
   ] satisfies SkillGroup[] as SkillGroup[],
