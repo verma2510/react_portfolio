@@ -4,6 +4,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import { SiteShell } from './components/layout/SiteShell';
 import { ActiveSectionProvider } from './providers/ActiveSectionProvider';
 import { CommandProvider } from './providers/CommandProvider';
+import { RailProvider } from './providers/RailProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 import HomePage from './pages/HomePage';
 
@@ -55,9 +56,11 @@ export default function App() {
       <BrowserRouter>
         <CommandProvider>
           <ActiveSectionProvider>
-            <SiteShell>
-              <AnimatedRoutes />
-            </SiteShell>
+            <RailProvider>
+              <SiteShell>
+                <AnimatedRoutes />
+              </SiteShell>
+            </RailProvider>
           </ActiveSectionProvider>
         </CommandProvider>
       </BrowserRouter>

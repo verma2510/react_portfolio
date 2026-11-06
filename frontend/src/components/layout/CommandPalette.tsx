@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowDownToLine, ArrowUpRight, Copy, CornerDownLeft, FolderGit2, Hash, Mail, Search, SunMoon } from 'lucide-react';
+import { ArrowDownToLine, ArrowUpRight, Copy, CornerDownLeft, FolderGit2, Hash, Mail, PanelLeft, Search, SunMoon } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { SECTIONS, projectNumber, projects, sectionNumber, socialLinks } from '../../lib/content';
-import { copyText } from '../../lib/platform';
+import { copyText, shortcutLabel } from '../../lib/platform';
 import { useSectionNav } from '../../hooks/useSectionNav';
 import { useCommandMenu } from '../../providers/CommandProvider';
 import { useTheme } from '../../providers/ThemeProvider';
+import { useRail } from '../../providers/RailProvider';
 
 interface Command {
   id: string;
@@ -23,6 +24,7 @@ interface Command {
 function PaletteDialog() {
   const { setOpen } = useCommandMenu();
   const { toggleTheme } = useTheme();
+  const { collapsed, toggle: toggleRail } = useRail();
   const goTo = useSectionNav();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
@@ -65,6 +67,18 @@ function PaletteDialog() {
         keywords: 'mode appearance',
         icon: <SunMoon size={15} />,
         run: () => toggleTheme(),
+      },
+      {
+        id: 'sidebar',
+        group: 'Actions',
+        label: collapsed ? 'Show sidebar' : 'Hide sidebar (full-width view)',
+        hint: shortcutLabel('B'),
+        keywords: 'sidebar rail panel collapse expand full width focus',
+        icon: <PanelLeft size={15} />,
+        run: () => {
+          toggleRail();
+          setOpen(false);
+        },
       },
       {
         id: 'resume',
@@ -113,7 +127,7 @@ function PaletteDialog() {
         },
       })),
     ];
-  }, [goTo, navigate, setOpen, toggleTheme]);
+  }, [collapsed, goTo, navigate, setOpen, toggleRail, toggleTheme]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();

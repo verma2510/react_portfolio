@@ -1,11 +1,14 @@
 import type { ReactNode } from 'react';
+import { useRail } from '../../providers/RailProvider';
 import { CommandPalette } from './CommandPalette';
 import { Footer } from './Footer';
+import { RailReveal } from './RailReveal';
 import { SideRail } from './SideRail';
 import { TopBar } from './TopBar';
 
 /** Persistent chrome around every route: rail (desktop), bar (mobile), palette, footer. */
 export function SiteShell({ children }: { children: ReactNode }) {
+  const { collapsed } = useRail();
   return (
     <div className="relative min-h-dvh">
       <a
@@ -15,8 +18,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
         Skip to content
       </a>
       <SideRail />
+      <RailReveal />
       <TopBar />
-      <div className="lg:pl-[256px]">
+      <div className={`transition-[padding] duration-500 ease-out-expo ${collapsed ? 'lg:pl-0' : 'lg:pl-[256px]'}`}>
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>

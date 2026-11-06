@@ -1,5 +1,5 @@
 import { m, useScroll, useSpring } from 'framer-motion';
-import { ArrowDownToLine, Search } from 'lucide-react';
+import { ArrowDownToLine, PanelLeftClose, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { portfolioData } from '../../data/portfolioData';
 import { SECTIONS, sectionNumber } from '../../lib/content';
@@ -7,6 +7,7 @@ import { shortcutLabel } from '../../lib/platform';
 import { useSectionNav } from '../../hooks/useSectionNav';
 import { useActiveSectionState } from '../../providers/ActiveSectionProvider';
 import { useCommandMenu } from '../../providers/CommandProvider';
+import { useRail } from '../../providers/RailProvider';
 import { Monogram } from './Monogram';
 import { SocialIcons } from './SocialIcons';
 import { ThemeToggle } from './ThemeToggle';
@@ -21,20 +22,40 @@ export function SideRail() {
   const { active } = useActiveSectionState();
   const goTo = useSectionNav();
   const { setOpen } = useCommandMenu();
+  const { collapsed, setCollapsed } = useRail();
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-[256px] flex-col border-r border-line bg-bg/85 backdrop-blur-xl lg:flex">
+    <aside
+      id="side-rail"
+      inert={collapsed}
+      aria-hidden={collapsed || undefined}
+      className={`fixed inset-y-0 left-0 z-40 hidden w-[256px] flex-col border-r border-line bg-bg/85 backdrop-blur-xl transition-transform duration-500 ease-out-expo lg:flex ${
+        collapsed ? '-translate-x-full' : 'translate-x-0'
+      }`}
+    >
       {/* Identity */}
       <div className="px-6 pt-7">
-        <Link to="/" className="group flex items-center gap-3" aria-label={`${portfolioData.hero.name} — home`}>
-          <Monogram size={34} />
-          <span className="min-w-0">
-            <span className="block text-[15px] font-semibold tracking-tight text-ink">{portfolioData.hero.name}</span>
-            <span className="block truncate text-[12px] text-muted">{current.role}</span>
-          </span>
-        </Link>
+        <div className="flex items-center justify-between gap-2">
+          <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label={`${portfolioData.hero.name} — home`}>
+            <Monogram size={34} />
+            <span className="min-w-0">
+              <span className="block text-[15px] font-semibold tracking-tight text-ink">{portfolioData.hero.name}</span>
+              <span className="block truncate text-[12px] text-muted">{current.role}</span>
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setCollapsed(true)}
+            aria-label="Hide sidebar"
+            aria-controls="side-rail"
+            title={`Hide sidebar (${shortcutLabel('B')})`}
+            className="-mr-2 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface-2 hover:text-ink"
+          >
+            <PanelLeftClose size={16} />
+          </button>
+        </div>
 
         <div className="mt-6 rounded-lg border border-line bg-surface/70 px-3 py-2.5">
           <div className="flex items-center gap-2">
