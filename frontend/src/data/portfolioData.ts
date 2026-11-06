@@ -136,6 +136,9 @@ export const portfolioData = {
       skills: [
         { name: "AWS", icon: "aws", proficiency: 80, years: 1, note: "IAM, EC2, Lambda, API Gateway, CloudWatch, S3" },
         { name: "Docker", icon: "docker", proficiency: 85, years: 2, note: "Software containerization platform" },
+        { name: "Kubernetes", icon: "kubernetes", proficiency: 75, years: 1, note: "Container orchestration platform" },
+        { name: "Redis", icon: "redis", proficiency: 85, years: 2, note: "In-memory data storage with low-latency data access" },
+        { name: "Nginx", icon: "nginx", proficiency: 85, years: 2, note: "Provides efficient request handling, reverse proxy, load balancer, and HTTP cache" },
         { name: "Git", icon: "git", proficiency: 90, years: 2, note: "Branching, collaboration & version control" },
         { name: "Vercel", icon: "vercel", proficiency: 80, years: 2, note: "Frontend hosting & CI/CD" },
         { name: "Render", icon: "render", proficiency: 75, years: 2, note: "Backend deployments" },
@@ -147,6 +150,7 @@ export const portfolioData = {
         { name: "DSA", icon: "dsa", proficiency: 85, years: 2, note: "Problem solving & optimization" },
         { name: "RAG", icon: "rag", proficiency: 75, years: 1, note: "Retrieval-Augmented Generation" },
         { name: "Kafka", icon: "kafka", proficiency: 72, years: 1, note: "Streaming data platform" },
+        { name: "RabbitMQ", icon: "rabbitmq", proficiency: 80, years: 1, note: "Message-queueing software" },
         { name: "Socket.io", icon: "socketdotio", proficiency: 85, years: 2, note: "Real-time communication" },
         { name: "n8n", icon: "n8n", proficiency: 85, years: 1, note: "Workflow automation platform" },
       ]
@@ -165,7 +169,7 @@ export const portfolioData = {
         "Diagnosed and resolved complex production bugs across full-stack MERN, Django, and FastAPI codebases"
       ],
       responsibilities: ["Full-stack development", "Bug diagnosis", "UI/UX refinement", "API design", "Authorization workflows", "Performance optimization"],
-      stack: ["React.js", "Node.js", "MongoDB", "Python", "FastAPI", "Django", "TypeScript"],
+      stack: ["React.js", "Node.js", "MongoDB", "Python", "FastAPI", "Django", "TypeScript", "DSA", "Socket.io", "n8n", "PostgreSQL"],
       stackTooltips: {
         "React.js": "Primary frontend framework across all product surfaces",
         "Node.js": "Backend services and REST API development",
@@ -232,7 +236,7 @@ export const portfolioData = {
         "CAD-based architectural rendering application with custom geometric algorithms for polygon generation, edge detection, and real-time wall drawing.",
         "Features intelligent vertex snapping, fragment outline system with edge suppression, and an interactive editing toolkit with undo/redo functionality."
       ],
-      stack: ["React", "TypeScript", "PixiJS"],
+      stack: ["React", "TypeScript", "PixiJS", "MongoDB", "DSA", "Git", "Socket.io", "Redux"],
       category: "Web",
       featured: true,
       liveLink: "",
@@ -250,7 +254,7 @@ export const portfolioData = {
         "Performs automated KPI detection, chart generation, and anomaly analysis.",
         "Features AI-driven insights with an interactive dashboard and secure authentication."
       ],
-      stack: ["React", "Nodejs", "MongoDB", "LLM", "Render", "Vercel"],
+      stack: ["React", "Nodejs", "MongoDB", "LLM", "Render", "Vercel", "Redux"],
       category: "Web/Mobile-Responsive",
       featured: true,
       liveLink: "https://viz-intel-service.vercel.app/",
@@ -268,7 +272,7 @@ export const portfolioData = {
         "Includes JWT authentication, community forum with peer discussions and moderation.",
         "Features appointment scheduling, application tracking, and a university catalog with 500+ institutions."
       ],
-      stack: ["React", "Node.js", "Express", "MongoDB"],
+      stack: ["React", "Node.js", "Express", "MongoDB", "Django", "Docker"],
       category: "Web",
       featured: false,
       liveLink: "",
@@ -286,7 +290,7 @@ export const portfolioData = {
         "Features recipe search and favorites management on a dedicated page.",
         "Includes Redux state management for seamless addition and removal of saved recipes."
       ],
-      stack: ["React", "Redux"],
+      stack: ["React", "Redux", "TailwindCSS"],
       category: "Web",
       featured: false,
       liveLink: "https://discover-dish.netlify.app/",
@@ -304,7 +308,7 @@ export const portfolioData = {
         "Features dynamic modules presenting key financial metrics.",
         "Built with reusable components like Navbar, Chart, and Sidebar, and React Router for seamless navigation across sections."
       ],
-      stack: ["React", "React Router"],
+      stack: ["React", "React Router", "JavaScript"],
       category: "Web",
       featured: false,
       liveLink: "https://finance-dashboard-reactjs.netlify.app/",
@@ -322,7 +326,7 @@ export const portfolioData = {
         "Features a validated contact form integrated with Nodemailer via a Node.js/Express backend.",
         "Frontend deployed on Vercel and backend on Railway."
       ],
-      stack: ["React", "Tailwind CSS", "Node.js", "Express", "Nodemailer"],
+      stack: ["React", "Tailwind CSS", "Node.js", "JavaScript", "Express", "Nodemailer"],
       category: "Web",
       featured: false,
       liveLink: "https://cogniqedge-react.vercel.app/",

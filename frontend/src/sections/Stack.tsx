@@ -98,7 +98,7 @@ export function Stack() {
                               isSel ? 'bg-surface-2/70' : 'hover:bg-surface-2/40'
                             }`}
                           >
-                            <TechIcon name={s.icon} size={17} className={`transition-colors ${isSel ? 'text-accent' : 'text-muted group-hover:text-ink'}`} />
+                            <TechIcon name={s.icon} category={g.category} size={17} className={`transition-colors ${isSel ? 'text-accent' : 'text-muted group-hover:text-ink'}`} />
                             <span className="min-w-0">
                               <span className="block text-[15px] font-medium text-ink">{s.name}</span>
                               {s.note && <span className="block truncate text-[12.5px] text-muted lg:hidden">{s.note}</span>}
@@ -150,7 +150,7 @@ function SkillInspector({ skill, category }: { skill: Skill; category: string })
         >
           <div className="flex items-center gap-4">
             <span className="blueprint flex h-14 w-14 items-center justify-center rounded-xl border border-line text-ink">
-              <TechIcon name={skill.icon} size={26} />
+              <TechIcon name={skill.icon} category={category} size={26} />
             </span>
             <div>
               <p className="text-[22px] font-semibold tracking-tight text-ink">{skill.name}</p>

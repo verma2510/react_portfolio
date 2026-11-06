@@ -102,6 +102,22 @@ const ALIASES: Record<string, string> = {
   expressjs: 'express',
   'socketio': 'socketio',
   llama32: 'llama',
+  postgres: 'postgresql',
+  amazonwebservices: 'aws',
+  apachekafka: 'kafka',
+  graphql: 'graphql',
+  k8s: 'kubernetes',
+  googlecloud: 'gcp',
+  nextdotjs: 'nextjs',
+  next: 'nextjs',
+  html5: 'html',
+  css3: 'css',
+  vuejs: 'vue',
+  golang: 'go',
+  'c++': 'cpp',
+  awslambda: 'lambda',
+  amazons3: 's3',
+  retrievalaugmentedgeneration: 'rag',
 };
 
 /** Canonical key so "React", "React.js" and "ReactJS" resolve to the same tech. */
@@ -117,9 +133,11 @@ const LAYER_OF: Record<string, Layer> = {
   reactrouter: 'client', tailwind: 'client', pixijs: 'client',
   node: 'server', express: 'server', fastapi: 'server', django: 'server',
   python: 'server', nodemailer: 'server', socketio: 'server',
-  mongodb: 'data',
-  llm: 'ai', llama: 'ai',
+  graphql: 'server', n8n: 'server', jest: 'client',
+  mongodb: 'data', postgresql: 'data', kafka: 'data', rabbitmq: 'data',
+  llm: 'ai', llama: 'ai', rag: 'ai',
   vercel: 'delivery', render: 'delivery', railway: 'delivery', netlify: 'delivery',
+  aws: 'delivery', docker: 'delivery',
   figma: 'design',
 };
 
@@ -133,6 +151,9 @@ export const LAYER_META: Record<Layer, { label: string; caption: string }> = {
 };
 
 export const layerOf = (tech: string): Layer => LAYER_OF[techKey(tech)] ?? 'client';
+
+/** Layer only when the tech is actually mapped (no 'client' default). */
+export const knownLayer = (tech: string): Layer | undefined => LAYER_OF[techKey(tech)];
 
 /** Groups a project's stack into architecture layers (only non-empty layers). */
 export function architectureOf(stack: string[]) {
